@@ -12,7 +12,7 @@ public class Cs201Application {
 //		SpringApplication.run(Cs201Application.class, args);
 
 		ReadToArray fileReader = new ReadToArray();
-		ArrayList<Business> businessList = fileReader.readFile("/Users/jasminequek/Desktop/CS201 Data/project/spring/demo/src/main/java/com/example/demo/test/yelpbiz.json");
+		ArrayList<Business> businessList = fileReader.readFile("CS201/src/main/resources/yelp_academic_dataset_business.json");
 
 		// for testing
 		System.out.println("first line of expected output: ");
