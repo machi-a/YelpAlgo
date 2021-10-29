@@ -27,8 +27,7 @@ public class Cs201Application {
 //
 //		SpringApplication.run(Cs201Application.class, args);
 		ArrayList<Business> businessList=readFile("/Users/charzzzzy/Documents/CS201/src/main/java/com/example/demo/yelp_academic_dataset_business.json");
-		HashMap<Double, ArrayList<Business> > map= groupRatings(businessList);
-		InsertIntoTree(map);
+
 
 	}
 
@@ -62,63 +61,7 @@ public class Cs201Application {
 
 	}
 
-	// store tree based on ratings;
-	public static HashMap<Double, ArrayList<Business> > groupRatings(ArrayList<Business> businessList){
 
-		HashMap<Double, ArrayList<Business> >map = new HashMap<>();
-		for(Business b: businessList){
-			if(map.containsKey(Double.parseDouble(b.getStars()))){
-
-				ArrayList<Business> current=map.get(Double.parseDouble(b.getStars()));
-				current.add(b);
-				map.put(Double.parseDouble(b.getStars()), current);
-			}else{
-				ArrayList<Business> toAdd= new ArrayList<>();
-				toAdd.add(b);
-				map.put(Double.parseDouble(b.getStars()), toAdd);
-			}
-		}
-		return map;
-
-	}
-
-	public static TreeNode createSubTree(ArrayList<Business> business) {
-
-		for (Business b : business) {
-			TreeNode store = new TreeNode(Double.parseDouble(b.getPostalCode()), null, null, null);
-			formTree( root,store);
-		}
-		return null;
-	}
-
-	
-	public static void InsertIntoTree(HashMap<Double, ArrayList<Business> > map){
-		for(double d: map.keySet()){
-			TreeNode ref=createSubTree(map.get(d));
-			TreeNode toInsert= new TreeNode(d,ref,null,null);
-			formTree(root,toInsert);
-		}
-
-
-	}
-
-///	insert treenode into tree
-	public static TreeNode formTree(TreeNode root, TreeNode toInsert)
-	{
-
-		if (root == null)
-		{
-			root=toInsert;
-			return root;
-		}
-		if (toInsert.getValue() < root.getValue())
-			root.setLeft(formTree(root.getLeft(), toInsert));
-		else if (toInsert.getValue() > root.getValue())
-			root.setRight(formTree(root.getRight(), toInsert));
-
-		/* return the (unchanged) node pointer */
-		return root;
-	}
 
 
 }
