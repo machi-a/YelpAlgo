@@ -1,6 +1,6 @@
-package NestedTree;
+package com.example.demo.nestedtree;
 
-import com.example.demo.Business;
+import com.example.demo.business.Business;
 import com.example.demo.TreeNode;
 import com.google.gson.Gson;
 

@@ -1,8 +1,6 @@
-package com.example.demo;
+package com.example.demo.business;
 
 public class BusinessParking {
-
-
         boolean garage;
         boolean street;
         boolean validated;
@@ -48,7 +46,4 @@ public class BusinessParking {
         public boolean isValet() {
             return valet;
         }
-
-
-
 }
