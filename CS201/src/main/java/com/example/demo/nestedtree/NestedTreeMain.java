@@ -19,13 +19,13 @@ public class NestedTreeMain {
 
 
         switch(option){
-            case '1':
+            case "1":
                 System.out.println("Enter the rating of restaurant:");
                 String input = sc.nextLine();
                 MainTreeNode ratingGroup = searchByRating(root, Double.parseDouble(input));
                 printSubTree(ratingGroup.getRoot());
                 break;
-            case '2':
+            case "2":
                 System.out.println("Enter the rating of restaurant:");
 //                String input = sc.nextLine();
 //                MainTreeNode ratingGroup = searchByRating(root, Double.parseDouble(input));
