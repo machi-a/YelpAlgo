@@ -5,14 +5,14 @@ public class MainTreeNode {
     private SubTreeNode root;
     private MainTreeNode left;
     private MainTreeNode right;
-    private MainTreeNode parent;
 
-    public MainTreeNode(double value, SubTreeNode root, MainTreeNode left, MainTreeNode right, MainTreeNode parent) {
+
+    public MainTreeNode(double value, SubTreeNode root, MainTreeNode left, MainTreeNode right) {
         this.value = value;
         this.root = root;
         this.left = left;
         this.right = right;
-        this.parent = parent;
+
     }
 
 
@@ -32,10 +32,6 @@ public class MainTreeNode {
         return right;
     }
 
-    public MainTreeNode getParent() {
-        return parent;
-    }
-
     public void setValue(double value) {
         this.value = value;
     }
@@ -46,10 +42,6 @@ public class MainTreeNode {
 
     public void setRight(MainTreeNode right) {
         this.right = right;
-    }
-
-    public void setParent(MainTreeNode parent) {
-        this.parent = parent;
     }
 
     public void setLeft(MainTreeNode left) {

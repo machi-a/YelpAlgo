@@ -1,25 +1,28 @@
 package com.example.demo.NestedTree;
 
 
+import com.example.demo.business.Business;
 
 public class SubTreeNode {
 
-    private double value;
+    private Business business;
     private SubTreeNode left;
     private SubTreeNode right;
-    private SubTreeNode parent;
 
-    public SubTreeNode(double value, SubTreeNode left, SubTreeNode right) {
-        this.value = value;
+    public SubTreeNode(Business business, SubTreeNode left, SubTreeNode right) {
+        this.business = business;
         this.left = left;
         this.right = right;
     }
 
-
-
-    public double getValue() {
-        return value;
+    public void setBusiness(Business business) {
+        this.business = business;
     }
+
+    public Business getBusiness() {
+        return business;
+    }
+
 
     public SubTreeNode getLeft() {
         return left;
@@ -29,14 +32,6 @@ public class SubTreeNode {
         return right;
     }
 
-    public SubTreeNode getParent() {
-        return parent;
-    }
-
-
-    public void setValue(double value) {
-        this.value = value;
-    }
 
     public void setLeft(SubTreeNode left) {
         this.left = left;
@@ -46,7 +41,4 @@ public class SubTreeNode {
         this.right = right;
     }
 
-    public void setParent(SubTreeNode parent) {
-        this.parent = parent;
-    }
 }
