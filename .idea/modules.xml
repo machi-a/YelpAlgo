@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/YelpAlgo.iml" filepath="$PROJECT_DIR$/.idea/YelpAlgo.iml" />
       <module fileurl="file://$PROJECT_DIR$/CS201/demo.iml" filepath="$PROJECT_DIR$/CS201/demo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CS201/.mvn/wrapper/wrapper.iml" filepath="$PROJECT_DIR$/CS201/.mvn/wrapper/wrapper.iml" />
     </modules>
   </component>
 </project>
