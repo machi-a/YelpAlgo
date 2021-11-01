@@ -11,9 +11,9 @@ public class Business {
     private String state;
     @SerializedName("postal_code")
     private String postalCode;
-    private String latitude;
-    private String longitude;
-    private String stars;
+    private Float latitude;
+    private Float longitude;
+    private Float stars;
     @SerializedName("review_count")
     private int reviewCount;
     @SerializedName("is_open")
@@ -46,15 +46,15 @@ public class Business {
         return postalCode;
     }
 
-    public String getLatitude() {
+    public Float getLatitude() {
         return latitude;
     }
 
-    public String getLongitude() {
+    public Float getLongitude() {
         return longitude;
     }
 
-    public String getStars() {
+    public Float getStars() {
         return stars;
     }
 
