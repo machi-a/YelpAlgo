@@ -13,7 +13,7 @@ public class Hashmap implements Serializable {
 
     public Hashmap(){
         ReadToArray fileReader = new ReadToArray();
-        businessList = fileReader.readFile("CS201/src/main/resources/yelp_academic_dataset_business.json");
+        businessList = fileReader.readFile("CS201/src/main/resources/yelpBiz.json");
         bizList = new HashMap<>();
         for (Business b: businessList) {
             bizList.put(b.getBusinessId(), b);

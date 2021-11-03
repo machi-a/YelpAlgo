@@ -54,7 +54,25 @@ public class Cs201Application {
 		System.out.println(fitsCriteriaList);
 		System.out.println("This method took " + Test1duration_MultiTree + "ns to run.");
 
+		System.out.println("Test 3: HashMap Version - key set");
+		fitsCriteriaList = hashmap.filterAllKeySet(requiredStars, requiredReviewCount, state, city);
+		endTime = System.nanoTime();
+		System.out.println("Duration taken "+ (endTime-startTime));
 
+		System.out.println("Test 3: HashMap Version - entry set");
+		fitsCriteriaList = hashmap.filterAllEntrySet(requiredStars, requiredReviewCount, state, city);
+		endTime = System.nanoTime();
+		System.out.println("Duration taken "+ (endTime-startTime));
+
+		System.out.println("Test 3: HashMap Version - entry iter");
+		fitsCriteriaList = hashmap.filterAllEntryIter(requiredStars, requiredReviewCount, state, city);
+		endTime = System.nanoTime();
+		System.out.println("Duration taken "+ (endTime-startTime));
+
+		System.out.println("Test 3: HashMap Version - key iter");
+		fitsCriteriaList = hashmap.filterAllKeyIter(requiredStars, requiredReviewCount, state, city);
+		endTime = System.nanoTime();
+		System.out.println("Duration taken "+ (endTime-startTime));
 
 		// // treemap (Charis)
 		// startTime = System.nanoTime();
@@ -137,54 +155,6 @@ public class Cs201Application {
 
 		System.out.println(fitsCriteriaList);
 		System.out.println("This method took " + duration + "ms to run.");
-
-		/*
-		Test case 4:
-		stars - null
-		no. of reviews: null
-		state - CO
-		city - Boulder
-		*/
-		System.out.println("Test 4: ");
-		requiredStars = null;
-		requiredReviewCount = 0;
-		state = "CO";
-		city = "Boulder";
-
-		// multitree (Jasmine)
-		startTime = System.nanoTime();
-		fitsCriteriaList = filter.fitsAllList(requiredStars, requiredReviewCount, state, city);
-		endTime = System.nanoTime();
-		duration = (endTime - startTime);
-
-		System.out.println(fitsCriteriaList);
-		System.out.println("This method took " + duration + "nano to run.");
-
-		System.out.println("Test 3: HashMap Version - key set");
-		fitsCriteriaList = hashmap.filterAllKeySet(requiredStars, requiredReviewCount, state, city);
-		System.out.println(fitsCriteriaList);
-		endTime = System.nanoTime();
-		System.out.println("Duration taken "+ (endTime-startTime));
-
-		System.out.println("Test 3: HashMap Version - entry set");
-		fitsCriteriaList = hashmap.filterAllEntrySet(requiredStars, requiredReviewCount, state, city);
-		System.out.println(fitsCriteriaList);
-		endTime = System.nanoTime();
-		System.out.println("Duration taken "+ (endTime-startTime));
-
-		System.out.println("Test 3: HashMap Version - entry iter");
-		fitsCriteriaList = hashmap.filterAllEntryIter(requiredStars, requiredReviewCount, state, city);
-		System.out.println(fitsCriteriaList);
-		endTime = System.nanoTime();
-		System.out.println("Duration taken "+ (endTime-startTime));
-
-		System.out.println("Test 3: HashMap Version - key iter");
-		fitsCriteriaList = hashmap.filterAllKeyIter(requiredStars, requiredReviewCount, state, city);
-		System.out.println(fitsCriteriaList);
-		endTime = System.nanoTime();
-		System.out.println("Duration taken "+ (endTime-startTime));
-
-
 	}
 
 	public static void fileSizeCalculator(Object obj){
