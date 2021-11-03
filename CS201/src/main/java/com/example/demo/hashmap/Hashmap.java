@@ -15,7 +15,6 @@ public class Hashmap {
         bizList = new HashMap<>();
         for (Business b: businessList) {
             bizList.put(b.getBusinessId(), b);
-            System.out.println("successed");
         }
 
     }
