@@ -21,9 +21,10 @@ class AVLStorage {
             returnAVLTree.insertElement((Business) bizIterator.next());
             System.out.println(bizIterator.next());
         }
-
         return returnAVLTree;
     }
+
+
 
 
 

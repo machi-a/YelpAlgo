@@ -50,7 +50,7 @@ class MainAVLTree
         if (node == null)
             node = new BusinessNode(element);
             //insert a node in case when the given element is lesser than the element of the root node
-        else if (element.getBusinessId().compareTo(node.element.getBusinessId()) < 0)
+        else if (element.getBusinessId().compareTo(node.element.getBusinessId()) <= 0)
         {
             node.leftChild = insertElement( element, node.leftChild );
             if( getHeight( node.leftChild ) - getHeight( node.rightChild ) == 2 )
