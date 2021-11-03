@@ -160,29 +160,29 @@ public class Cs201Application {
 		System.out.println(fitsCriteriaList);
 		System.out.println("This method took " + duration + "nano to run.");
 
-//		System.out.println("Test 3: HashMap Version - key set");
-//		fitsCriteriaList = hashmap.filterAllKeySet(requiredStars, requiredReviewCount, state, city);
-//		System.out.println(fitsCriteriaList);
-//		endTime = System.nanoTime();
-//		System.out.println("Duration taken "+ (endTime-startTime));
-//
-//		System.out.println("Test 3: HashMap Version - entry set");
-//		fitsCriteriaList = hashmap.filterAllEntrySet(requiredStars, requiredReviewCount, state, city);
-//		System.out.println(fitsCriteriaList);
-//		endTime = System.nanoTime();
-//		System.out.println("Duration taken "+ (endTime-startTime));
-//
-//		System.out.println("Test 3: HashMap Version - entry iter");
-//		fitsCriteriaList = hashmap.filterAllEntryIter(requiredStars, requiredReviewCount, state, city);
-//		System.out.println(fitsCriteriaList);
-//		endTime = System.nanoTime();
-//		System.out.println("Duration taken "+ (endTime-startTime));
-//
-//		System.out.println("Test 3: HashMap Version - key iter");
-//		fitsCriteriaList = hashmap.filterAllKeyIter(requiredStars, requiredReviewCount, state, city);
-//		System.out.println(fitsCriteriaList);
-//		endTime = System.nanoTime();
-//		System.out.println("Duration taken "+ (endTime-startTime));
+		System.out.println("Test 3: HashMap Version - key set");
+		fitsCriteriaList = hashmap.filterAllKeySet(requiredStars, requiredReviewCount, state, city);
+		System.out.println(fitsCriteriaList);
+		endTime = System.nanoTime();
+		System.out.println("Duration taken "+ (endTime-startTime));
+
+		System.out.println("Test 3: HashMap Version - entry set");
+		fitsCriteriaList = hashmap.filterAllEntrySet(requiredStars, requiredReviewCount, state, city);
+		System.out.println(fitsCriteriaList);
+		endTime = System.nanoTime();
+		System.out.println("Duration taken "+ (endTime-startTime));
+
+		System.out.println("Test 3: HashMap Version - entry iter");
+		fitsCriteriaList = hashmap.filterAllEntryIter(requiredStars, requiredReviewCount, state, city);
+		System.out.println(fitsCriteriaList);
+		endTime = System.nanoTime();
+		System.out.println("Duration taken "+ (endTime-startTime));
+
+		System.out.println("Test 3: HashMap Version - key iter");
+		fitsCriteriaList = hashmap.filterAllKeyIter(requiredStars, requiredReviewCount, state, city);
+		System.out.println(fitsCriteriaList);
+		endTime = System.nanoTime();
+		System.out.println("Duration taken "+ (endTime-startTime));
 
 
 	}
