@@ -83,6 +83,26 @@ public class Cs201Application {
 		// System.out.println(); // list 
 		// System.out.println("This method took " + Test1duration_Treemap + "ns to run.");
 
+		// try {   
+		// 	//Saving of object in a file
+		// 	String path = "/Users/jasminequek/Desktop/CS201 Data/project/Test1_Treemap";
+		// 	FileOutputStream file = new FileOutputStream(path);
+		// 	ObjectOutputStream out = new ObjectOutputStream(file);
+			
+		// 	// Method for serialization of object
+		// 	out.writeObject(filter); // object to serialise
+			
+		// 	out.close();
+		// 	file.close();
+
+		// 	long Test1Size_Treemap = Files.size(Paths.get(path));
+			
+		// 	System.out.println("Test1_Treemap: Object has been serialized");
+		// 	System.out.println("Size of file: " + Test1Size_Treemap + "bytes");
+		// } catch(IOException ex) {
+		// 	System.out.println("Test1_Treemap: IOException is caught");
+		// }
+
 
 
 		// // AVL (Jye Yi)
@@ -93,6 +113,26 @@ public class Cs201Application {
 
 		// System.out.println(); // list 
 		// System.out.println("This method took " + Test1duration_AVLTree + "ns to run.");
+
+		// try {   
+		// 	//Saving of object in a file
+		// 	String path = "/Users/jasminequek/Desktop/CS201 Data/project/Test1_AVLTree";
+		// 	FileOutputStream file = new FileOutputStream(path);
+		// 	ObjectOutputStream out = new ObjectOutputStream(file);
+			
+		// 	// Method for serialization of object
+		// 	out.writeObject(filter); // object to serialise
+			
+		// 	out.close();
+		// 	file.close();
+
+		// 	long Test1Size_AVLTree = Files.size(Paths.get(path));
+			
+		// 	System.out.println("Test1_AVLTree: Object has been serialized");
+		// 	System.out.println("Size of file: " + Test1Size_AVLTree + "bytes");
+		// } catch(IOException ex) {
+		// 	System.out.println("Test1_AVLTree: IOException is caught");
+		// }
 
 
 
@@ -106,6 +146,25 @@ public class Cs201Application {
 //		 System.out.println(); // list
 //		 System.out.println("This method took " + Test1duration_Hashmap + "ns to run.");
 
+		// try {   
+		// 	//Saving of object in a file
+		// 	String path = "/Users/jasminequek/Desktop/CS201 Data/project/Test1_Hashmap";
+		// 	FileOutputStream file = new FileOutputStream(path);
+		// 	ObjectOutputStream out = new ObjectOutputStream(file);
+			
+		// 	// Method for serialization of object
+		// 	out.writeObject(filter); // object to serialise
+			
+		// 	out.close();
+		// 	file.close();
+
+		// 	long Test1Size_Hashmap = Files.size(Paths.get(path));
+			
+		// 	System.out.println("Test1_Hashmap: Object has been serialized");
+		// 	System.out.println("Size of file: " + Test1Size_Hashmap + "bytes");
+		// } catch(IOException ex) {
+		// 	System.out.println("Test1_Hashmap: IOException is caught");
+		// }
 
 
 
@@ -160,7 +219,7 @@ public class Cs201Application {
 	public static void fileSizeCalculator(Object obj){
 		try {
 			//Saving of object in a file
-			String path = "/Users/Li/Desktop/201Proj/test1";
+			String path = "CS201/src/main/resources/Test1";
 			FileOutputStream file = new FileOutputStream(path);
 			ObjectOutputStream out = new ObjectOutputStream(file);
 
@@ -179,4 +238,5 @@ public class Cs201Application {
 		}
 	}
 
+	}
 }
