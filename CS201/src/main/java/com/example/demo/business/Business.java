@@ -1,6 +1,7 @@
 package com.example.demo.business;
 
 import com.google.gson.annotations.SerializedName;
+import org.apache.commons.lang.builder.HashCodeBuilder;
 
 public class Business {
     @SerializedName("business_id")
@@ -80,5 +81,13 @@ public class Business {
 
     public String toString() {
         return String.format("\n[businessId: " +  businessId + ", name: " + name + ", city: " + city + ", state: " + state +", latitude: " + latitude + ", longitude: " + longitude + ", stars: " + stars + ", review count: " + reviewCount +"]");
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 97).
+                append(businessId).
+                append(name).
+                toHashCode();
     }
 }
