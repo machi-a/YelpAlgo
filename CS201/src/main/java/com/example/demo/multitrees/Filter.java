@@ -3,11 +3,15 @@ package com.example.demo.multitrees;
 import com.example.demo.business.Business;
 import com.example.demo.multitrees.FeatureTree;
 
+import java.io.Serializable;
+import java.rmi.server.UID;
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.TreeMap;
 import java.util.Map.Entry;
 
-public class Filter {
+public class Filter implements Serializable {
+    private static final long serialVersionUID = 1L;
     private FeatureTree trees;
     // private String state;
     // private String city;
@@ -32,6 +36,13 @@ public class Filter {
         return fitsStarsList;
     }
 
+    // public ArrayList<Business> fitsStarsListSubMapImplementation(Float requiredStars) {
+    //     TreeMap<Float, ArrayList<Business>> starsMap = trees.createStarsTreeMap();
+    //     Map<Float, ArrayList<Business>> fitsStarsMap = starsMap.subMap(requiredStars, true, 5.0f, true);
+    //     List<Business> fitsStarsList = new ArrayList<Business>(fitsStarsMap.values());
+    //     return fitsStarsList;
+    // }
+
     public ArrayList<Business> fitsReviewCountList(int requiredReviewCount) {
         ArrayList<Business> fitsReviewCountList = new ArrayList<Business>();
         Map<Integer, ArrayList<Business>> reviewCountMap = trees.createReviewCountTreeMap();
@@ -44,6 +55,20 @@ public class Filter {
             }
         }
         return fitsReviewCountList;
+    }
+
+    public ArrayList<Business> fitsStateList(String requiredState) {
+        ArrayList<Business> fitsStateList = new ArrayList<Business>();
+        Map<String, ArrayList<Business>> stateMap = trees.createStateTreeMap();
+        
+        for (Entry<String, ArrayList<Business>> stateEntry : stateMap.entrySet()) {
+            if (stateEntry.getKey().equals(requiredState)) {
+                for (Business b: stateEntry.getValue()) {
+                    fitsStateList.add(b);
+                }
+            }
+        }
+        return fitsStateList;
     }
 
     public ArrayList<Business> fitsStateCityList(String requiredState, String requiredCity) {
@@ -77,14 +102,95 @@ public class Filter {
         return fitsStarsAndReviewCountList;
     }
 
-    public ArrayList<Business> fitsAllList(Float requiredStars, int requiredReviewCount, String requiredState, String requiredCity) {
-        ArrayList<Business> fitsStateCityList = fitsStateCityList(requiredState, requiredCity);
-        ArrayList<Business> fitsStarsAndReviewCountList = fitsStarsAndReviewCountList(requiredStars, requiredReviewCount);
+    // err where to call 
+    public Boolean validifyRequirements(Float requiredStars, int requiredReviewCount) { // String requiredState, String requiredCity: how to verify
+        if (requiredStars < 0 || requiredStars > 5.0) { // exceed range of 0~5.0 
+            return false;
+        } else if (requiredStars % 0.5 != 0) { // not in denominations of 0.5
+            return false;
+        }
 
+        if (requiredReviewCount < 0) { // negative
+            return false;
+        } else if (requiredReviewCount % 1 != 0) { // not an integer, shouldnt come here i think
+            return false;
+        }
+        return true;
+    }
+
+    public ArrayList<Business> fitsAllList(Float requiredStars, int requiredReviewCount, String requiredState, String requiredCity) {
         ArrayList<Business> fitsAllList = new ArrayList<Business>();
-        for (Business b : fitsStateCityList) {
-            if (fitsStarsAndReviewCountList.contains(b)) {
-                fitsAllList.add(b);
+        
+        if (requiredStars != null && requiredReviewCount == 0) {
+            ArrayList<Business> fitsStarsList = fitsStarsList(requiredStars);
+            if (requiredState != null && requiredCity == null) {
+                ArrayList<Business> fitsStateList = fitsStateList(requiredState);
+                for (Business b : fitsStateList) {
+                    if (fitsStarsList.contains(b)) {
+                        fitsAllList.add(b);
+                    }
+                }
+                return fitsAllList;
+            } else if (requiredState != null && requiredCity != null) {
+                ArrayList<Business> fitsStateCityList = fitsStateCityList(requiredState, requiredCity);
+                for (Business b : fitsStateCityList) {
+                    if (fitsStarsList.contains(b)) {
+                        fitsAllList.add(b);
+                    }
+                }
+                return fitsAllList;
+            } else {
+                fitsAllList = fitsStarsList;
+            }
+        } else if (requiredStars == null && requiredReviewCount > 0) {
+            ArrayList<Business> fitsReviewCountList = fitsReviewCountList(requiredReviewCount);
+            if (requiredState != null && requiredCity == null) {
+                ArrayList<Business> fitsStateList = fitsStateList(requiredState);
+                for (Business b : fitsStateList) {
+                    if (fitsReviewCountList.contains(b)) {
+                        fitsAllList.add(b);
+                    }
+                }
+                return fitsAllList;
+            } else if (requiredState != null && requiredCity != null) {
+                ArrayList<Business> fitsStateCityList = fitsStateCityList(requiredState, requiredCity);
+                for (Business b : fitsStateCityList) {
+                    if (fitsReviewCountList.contains(b)) {
+                        fitsAllList.add(b);
+                    }
+                }
+                return fitsAllList;
+            } else {
+                fitsAllList = fitsReviewCountList;
+            }
+        } else if (requiredStars != null && requiredReviewCount > 0) {
+            ArrayList<Business> fitsStarsAndReviewCountList = fitsStarsAndReviewCountList(requiredStars, requiredReviewCount);
+            if (requiredState != null && requiredCity == null) {
+                ArrayList<Business> fitsStateList = fitsStateList(requiredState);
+                for (Business b : fitsStateList) {
+                    if (fitsStarsAndReviewCountList.contains(b)) {
+                        fitsAllList.add(b);
+                    }
+                }
+                return fitsAllList;
+            } else if (requiredState != null && requiredCity != null) {
+                ArrayList<Business> fitsStateCityList = fitsStateCityList(requiredState, requiredCity);
+                for (Business b : fitsStateCityList) {
+                    if (fitsStarsAndReviewCountList.contains(b)) {
+                        fitsAllList.add(b);
+                    }
+                }
+                return fitsAllList;
+            } else {
+                fitsAllList = fitsStarsAndReviewCountList;
+            }
+        } else { // no required stars nor reviewcount 
+            if (requiredState != null && requiredCity == null) {
+                ArrayList<Business> fitsStateList = fitsStateList(requiredState);
+                return fitsStateList;
+            } else if (requiredState != null && requiredCity != null) {
+                ArrayList<Business> fitsStateCityList = fitsStateCityList(requiredState, requiredCity);
+                return fitsStateCityList;
             }
         }
         return fitsAllList;

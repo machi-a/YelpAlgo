@@ -6,6 +6,12 @@ import com.example.demo.multitrees.Filter;
 import com.example.demo.hashmap.Hashmap;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.*;
 
 @SpringBootApplication
@@ -27,41 +33,230 @@ public class Cs201Application {
 		/*
 		Test case 1:
 		stars - 4.0 and above
-		no. of reviews: 20 and above
+		no. of reviews: 100 and above
+		state - OR
+		city - Portland
 		*/
 		System.out.println("Test 1: ");
 		Float requiredStars = 4.0f;
 		int requiredReviewCount = 100;
-
-		Filter filter = new Filter();
-		ArrayList<Business> fitsCriteriaList = filter.fitsStarsAndReviewCountList(requiredStars, requiredReviewCount);
-		System.out.println(fitsCriteriaList);
-
-		/*
-		Test case 2:
-		state - OR
-		city - Portland
-		*/
-		System.out.println("Test 2: ");
 		String state = "OR";
 		String city = "Portland";
 
-		// Filter filter = new Filter();
-		fitsCriteriaList = filter.fitsStateCityList(state, city);
+		// multitree (Jasmine)
+		long startTime = System.nanoTime();
+		Filter filter = new Filter();
+		List<Business> fitsCriteriaList = filter.fitsAllList(requiredStars, requiredReviewCount, state, city);
+		long endTime = System.nanoTime();
+		long Test1duration_MultiTree = (endTime - startTime);  //divide by 1000000 to get milliseconds.
+
 		System.out.println(fitsCriteriaList);
+		System.out.println("This method took " + Test1duration_MultiTree + "ns to run.");
+
+		try {   
+			//Saving of object in a file
+			String path = "/Users/jasminequek/Desktop/CS201 Data/project/Test1_MultiTree";
+			FileOutputStream file = new FileOutputStream(path);
+			ObjectOutputStream out = new ObjectOutputStream(file);
+			
+			// Method for serialization of object
+			out.writeObject(filter); // object to serialise
+			
+			out.close();
+			file.close();
+
+			long Test1Size_MultiTree = Files.size(Paths.get(path));
+			
+			System.out.println("Test1_MultiTree: Object has been serialized");
+			System.out.println("Size of file: " + Test1Size_MultiTree + "bytes");
+		} catch(IOException ex) {
+			System.out.println("Test1_MultiTree: IOException is caught");
+		}
+
+
+
+		// // treemap (Charis)
+		// startTime = System.nanoTime();
+		// // call ur method
+		// endTime = System.nanoTime();
+		// long Test1duration_Treemap = (endTime - startTime);  //divide by 1000000 to get milliseconds.
+
+		// System.out.println(); // list 
+		// System.out.println("This method took " + Test1duration_Treemap + "ns to run.");
+
+		// try {   
+		// 	//Saving of object in a file
+		// 	String path = "/Users/jasminequek/Desktop/CS201 Data/project/Test1_Treemap";
+		// 	FileOutputStream file = new FileOutputStream(path);
+		// 	ObjectOutputStream out = new ObjectOutputStream(file);
+			
+		// 	// Method for serialization of object
+		// 	out.writeObject(filter); // object to serialise
+			
+		// 	out.close();
+		// 	file.close();
+
+		// 	long Test1Size_Treemap = Files.size(Paths.get(path));
+			
+		// 	System.out.println("Test1_Treemap: Object has been serialized");
+		// 	System.out.println("Size of file: " + Test1Size_Treemap + "bytes");
+		// } catch(IOException ex) {
+		// 	System.out.println("Test1_Treemap: IOException is caught");
+		// }
+
+
+
+		// // AVL (Jye Yi)
+		// startTime = System.nanoTime();
+		// // call ur method
+		// endTime = System.nanoTime();
+		// long Test1duration_AVLTree = (endTime - startTime);  //divide by 1000000 to get milliseconds.
+
+		// System.out.println(); // list 
+		// System.out.println("This method took " + Test1duration_AVLTree + "ns to run.");
+
+		// try {   
+		// 	//Saving of object in a file
+		// 	String path = "/Users/jasminequek/Desktop/CS201 Data/project/Test1_AVLTree";
+		// 	FileOutputStream file = new FileOutputStream(path);
+		// 	ObjectOutputStream out = new ObjectOutputStream(file);
+			
+		// 	// Method for serialization of object
+		// 	out.writeObject(filter); // object to serialise
+			
+		// 	out.close();
+		// 	file.close();
+
+		// 	long Test1Size_AVLTree = Files.size(Paths.get(path));
+			
+		// 	System.out.println("Test1_AVLTree: Object has been serialized");
+		// 	System.out.println("Size of file: " + Test1Size_AVLTree + "bytes");
+		// } catch(IOException ex) {
+		// 	System.out.println("Test1_AVLTree: IOException is caught");
+		// }
+
+
+
+		// // Hashmap (Li)
+		// startTime = System.nanoTime();
+		// // call ur method
+		// endTime = System.nanoTime();
+		// long Test1duration_Hashmap = (endTime - startTime);  //divide by 1000000 to get milliseconds.
+
+		// System.out.println(); // list 
+		// System.out.println("This method took " + Test1duration_Hashmap + "ns to run.");
+
+		// try {   
+		// 	//Saving of object in a file
+		// 	String path = "/Users/jasminequek/Desktop/CS201 Data/project/Test1_Hashmap";
+		// 	FileOutputStream file = new FileOutputStream(path);
+		// 	ObjectOutputStream out = new ObjectOutputStream(file);
+			
+		// 	// Method for serialization of object
+		// 	out.writeObject(filter); // object to serialise
+			
+		// 	out.close();
+		// 	file.close();
+
+		// 	long Test1Size_Hashmap = Files.size(Paths.get(path));
+			
+		// 	System.out.println("Test1_Hashmap: Object has been serialized");
+		// 	System.out.println("Size of file: " + Test1Size_Hashmap + "bytes");
+		// } catch(IOException ex) {
+		// 	System.out.println("Test1_Hashmap: IOException is caught");
+		// }
+
+
+
+// --------------------TEST CASE 2----------------------------
+		/*
+		Test case 2:
+		stars - 4.5 and above
+		no. of reviews: 20 and above
+		state - CO
+		city - null
+		*/
+		System.out.println("Test 2: ");
+		requiredStars = 4.0f;
+		requiredReviewCount = 20;
+		state = "CO";
+		city = null;
+
+		// multitree (Jasmine)
+		startTime = System.nanoTime();
+		fitsCriteriaList = filter.fitsAllList(requiredStars, requiredReviewCount, state, city);
+		endTime = System.nanoTime();
+		long duration = (endTime - startTime)/1000000;
+
+		System.out.println(fitsCriteriaList);
+		System.out.println("This method took " + duration + "ms to run.");
 
 		/*
 		Test case 3:
-		stars - 4.0 and above
-		no. of reviews: 20 and above
-		state - OR
-		city - Portland
+		stars - null
+		no. of reviews: 120 and above
+		state - null
+		city - null
 		*/
 
 		startTime = System.nanoTime();
 		System.out.println("Test 3: ");
+		requiredStars = null;
+		requiredReviewCount = 120;
+		state = null;
+		city = null;
+
+		// multitree (Jasmine)
+		startTime = System.nanoTime();
 		fitsCriteriaList = filter.fitsAllList(requiredStars, requiredReviewCount, state, city);
+		endTime = System.nanoTime();
+		duration = (endTime - startTime)/1000000;
+
 		System.out.println(fitsCriteriaList);
+		System.out.println("This method took " + duration + "ms to run.");
+
+		/*
+		Test case 4:
+		stars - null
+		no. of reviews: null
+		state - CO
+		city - Boulder
+		*/
+		System.out.println("Test 4: ");
+		requiredStars = null;
+		requiredReviewCount = 0;
+		state = "CO";
+		city = "Boulder";
+
+		// multitree (Jasmine)
+		startTime = System.nanoTime();
+		fitsCriteriaList = filter.fitsAllList(requiredStars, requiredReviewCount, state, city);
+		endTime = System.nanoTime();
+		duration = (endTime - startTime)/1000000;
+
+		System.out.println(fitsCriteriaList);
+		System.out.println("This method took " + duration + "ms to run.");
+
+		try
+		{   
+			//Saving of object in a file
+			FileOutputStream file = new FileOutputStream("/Users/jasminequek/Desktop/CS201 Data/project/Test2");
+			ObjectOutputStream out = new ObjectOutputStream(file);
+			
+			// Method for serialization of object
+			out.writeObject(filter);
+			
+			out.close();
+			file.close();
+			
+			System.out.println("Object has been serialized");
+
+		}
+		catch(IOException ex)
+		{
+			System.out.println("IOException is caught");
+			ex.printStackTrace();
+		}
 		endTime = System.nanoTime();
 		System.out.println("Duration taken "+ (endTime-startTime));
 		startTime = System.nanoTime();

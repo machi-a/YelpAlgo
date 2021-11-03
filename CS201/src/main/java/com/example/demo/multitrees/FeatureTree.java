@@ -3,12 +3,14 @@ package com.example.demo.multitrees;
 import com.example.demo.business.Business;
 import com.example.demo.reader.ReadToArray;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-public class FeatureTree { 
+public class FeatureTree implements Serializable {
+    private static final long serialVersionUID = 1L;
     private List<Business> businessList;
 
     public FeatureTree() {
@@ -46,6 +48,22 @@ public class FeatureTree {
         return reviewCountMap; 
     }
 
+    public Map<String, ArrayList<Business>> createStateTreeMap() {
+        Map<String, ArrayList<Business>> stateMap = new TreeMap<String, ArrayList<Business>>();
+
+        for (Business b: businessList) {
+            if (!stateMap.containsKey(b.getState())) {
+                ArrayList<Business> bizList = new ArrayList<Business>();
+                stateMap.put(b.getState(), bizList);
+                bizList.add(b);
+            } else {
+                ArrayList<Business> bizList = stateMap.get(b.getState());
+                bizList.add(b);
+            }
+        }
+        return stateMap; 
+    }
+
     public Map<String, Map<String, ArrayList<Business>>> createStateCityTreeMap() { // nested treemap, 1st layer key: state, second layer key: city
         Map<String, Map<String, ArrayList<Business>>> stateMap = new TreeMap<String, Map<String, ArrayList<Business>>>();
 
@@ -70,22 +88,5 @@ public class FeatureTree {
         }
         return stateMap; 
     }
-
-    // public Map<String, ArrayList<Business>> createStateTreeMap() {
-    //     Map<String, ArrayList<Business>> stateMap = new TreeMap<String, ArrayList<Business>>();
-    //     for (Business b: businessList) {
-    //         if (!stateMap.containsKey(b.getState())) {
-    //             ArrayList<Business> bizList = new ArrayList<Business>();
-    //             stateMap.put(b.getState(), bizList);
-    //             bizList.add(b);
-    //         } else {
-    //             ArrayList<Business> bizList = stateMap.get(b.getState());
-    //             bizList.add(b);
-    //         }
-    //     }
-    //     return stateMap; 
-    // }
-
-
 }
 
