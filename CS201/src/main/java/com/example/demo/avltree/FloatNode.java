@@ -1,16 +1,14 @@
 package com.example.demo.avltree;
 
-import com.example.demo.business.Business;
+public class FloatNode {
 
-public class intNode {
-
-    int element;
+    float element;
     int h;  //for height
-    BusinessNode leftChild;
-    BusinessNode rightChild;
+    FloatNode leftChild;
+    FloatNode rightChild;
 
     //default constructor to create null node
-    public intNode()
+    public FloatNode()
     {
         leftChild = null;
         rightChild = null;
@@ -18,11 +16,12 @@ public class intNode {
         h = 0;
     }
     // parameterized constructor
-    public intNode(int element)
+    public FloatNode(float element)
     {
         leftChild = null;
         rightChild = null;
         this.element = element;
         h = 0;
     }
+
 }
