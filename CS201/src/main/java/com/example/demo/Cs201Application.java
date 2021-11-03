@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import com.example.demo.NestedTree.*;
 import com.example.demo.business.Business;
 import com.example.demo.reader.ReadToArray;
 import com.example.demo.multitrees.Filter;
@@ -24,7 +25,8 @@ public class Cs201Application {
 		Hashmap hashmap= new Hashmap();
 
 		ReadToArray fileReader = new ReadToArray();
-		ArrayList<Business> businessList = fileReader.readFile("CS201/src/main/resources/yelp_academic_dataset_business.json");
+//		ArrayList<Business> businessList = fileReader.readFile("CS201/src/main/resources/yelp_academic_dataset_business.json");
+		ArrayList<Business> businessList = fileReader.readFile("/Users/charzzzzy/Downloads/yelp_dataset/yelp_academic_dataset_business.json");
 
 		// for testing
 		//System.out.println("first line of expected output: ");
@@ -214,6 +216,70 @@ public class Cs201Application {
 
 		System.out.println(fitsCriteriaList);
 		System.out.println("This method took " + duration + "ms to run.");
+
+
+// --------------------Nested Trees, AVL Trees, Hybrid----------------------------
+		/*
+		Comparing between Nested Tree, Nested Tree with AVL and Hybrid structure
+		Hybrid structure is a hashmap with an AVL tree
+		*/
+//		System.out.println("Test 3: ");
+//
+//		state = "WA";
+//		city = "Vancouver";
+//
+//		System.out.println("Option #1 Using nested tree: ");
+//		// multitree (Jasmine)
+//		long startTimeCreate = System.nanoTime();
+//		CityAndState.LoadNestedTree(businessList);
+//		long endTimeCreate = System.nanoTime();
+//		startTime = System.nanoTime();
+//		CityAndState.searchByCityAndState(CityAndState.root,state,city);
+//		endTime = System.nanoTime();
+//		duration = (endTime - startTime)/1000000;
+//
+//		System.out.println("This method took " + duration + "ms to run.");
+//
+//
+//		System.out.println("Option #2 Using nested AVL tree: ");
+//		// multitree (Jasmine)
+//		startTimeCreate = System.nanoTime();
+//		CityAndStateAVL.LoadNestedTree(businessList);
+//		endTimeCreate = System.nanoTime();
+//		startTime = System.nanoTime();
+//		CityAndStateAVL.searchByCityAndState(CityAndStateAVL.root,state,city);
+//		endTime = System.nanoTime();
+//		duration = (endTime - startTime)/1000000;
+//
+//		System.out.println("This method took " + duration + "ms to run.");
+//
+//		System.out.println("Option #2 Using Hybrid Structure: ");
+//		// multitree (Jasmine)
+//		startTimeCreate = System.nanoTime();
+//		HashMap< String , SubTreeNode> hybridStructure=HybridTree.LoadHybridStructure(businessList);
+//		endTimeCreate = System.nanoTime();
+//		startTime = System.nanoTime();
+//		HybridTree.searchByCityAndState(hybridStructure,state,city);
+//		endTime = System.nanoTime();
+//		duration = (endTime - startTime)/1000000;
+//
+//		System.out.println("This method took " + duration + "ms to run.");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	}
 
 	public static void fileSizeCalculator(Object obj){
@@ -238,5 +304,4 @@ public class Cs201Application {
 		}
 	}
 
-	}
 }
