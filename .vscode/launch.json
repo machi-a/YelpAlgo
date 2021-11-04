@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch Treemapx",
+            "request": "launch",
+            "mainClass": "com.example.demo.treemap.Treemapx",
+            "projectName": "demo"
+        },
+        {
+            "type": "java",
             "name": "Spring Boot-Cs201Application<demo>",
             "request": "launch",
             "cwd": "${workspaceFolder}",

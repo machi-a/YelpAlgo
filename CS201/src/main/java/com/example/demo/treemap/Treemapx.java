@@ -8,28 +8,51 @@ import java.util.*;
 public class Treemapx {
 
     private static Treenodex root;
+    public Treenodex getRoot() {
+        return root;
+    }
     ArrayList<Business> ratingal = new ArrayList<>();
     ArrayList<Business> reviewal = new ArrayList<>();
     ArrayList<Business> stateal = new ArrayList<>();
     ArrayList<Business> cityal = new ArrayList<>();
 
     public static void main(String[] args) {
-        Treemapx tm = new Treemapx();
-        ReadToArray fileReader = new ReadToArray();
-        ArrayList<Business> businessList = fileReader.readFile("/Users/charischin/Documents/Y2S1/CS201/project/classes/yelp_academic_dataset_business.json");
-        for (int i = 0; i < 10; i++) { // stopping condition to be replaced with businessList.size()
-            tm.insert(businessList.get(i));
-            // System.out.println(businessList.get(i));
-        }
-        // tests
-        printAll(root);
-        printResult(tm.searchRating(4)); // test using stars = 4
-        printResult(tm.searchReviewCount(80)); // test using count = 80
-        printResult(tm.searchState("OR")); // test using state = OR
-        printResult(tm.searchCity("Austin")); // test using city = austin
+        Treemapx map = new Treemapx();
+        map.fill();
+        // tests (all)
+        // ArrayList<Business> l = map.searchAll(4.0f, 50, null, null);
+        // ArrayList<Business> l = map.searchAll(null, 0, "GA", null);
+        // ArrayList<Business> l = map.searchAll(5.0f, 0, "TX", null);
+        // printResult(l);
+
+        // tests (individual)
+        // printResult(tm.searchRating(4)); // test using stars = 4
+        // printResult(tm.searchReviewCount(80)); // test using count = 80
+        // printResult(tm.searchState("OR")); // test using state = OR
+        // printResult(tm.searchCity("Austin")); // test using city = austin
     }
 
-    private static void printAll(Treenodex root){
+    public Treemapx fill() {
+        Treemapx tm = new Treemapx();
+        ReadToArray fileReader = new ReadToArray();
+        ArrayList<Business> businessList = fileReader.readFile("CS201/src/main/resources/yelp_academic_dataset_business.json");
+        // ArrayList<Business> businessList = fileReader.readFile("/Users/charischin/Documents/Y2S1/CS201/project/classes/yelp_academic_dataset_business.json");
+        for (int i = 0; i < businessList.size(); i++) {
+            tm.insert(businessList.get(i));
+        }
+        return tm;
+    }
+
+    public void fillList(Treenodex node, ArrayList<Business> list){
+        if (node == null){
+            return;
+        }
+        fillList(node.getLeft(), list);
+        list.add(node.getBusiness());
+        fillList(node.getRight(), list);
+    }
+
+    public static void printAll(Treenodex root){
         if (root == null) {
             System.out.println("Null");
             return;
@@ -48,7 +71,7 @@ public class Treemapx {
         }
     }
 
-    private static void printResult(ArrayList<Business> al){
+    public static void printResult(ArrayList<Business> al){
         System.out.println("\nLIST OF BUSINESSES");
         for(int i = 0; i < al.size(); i++) {
             System.out.println(al.get(i).getName());
@@ -56,11 +79,11 @@ public class Treemapx {
         System.out.println("--------\nCount: "+ al.size());
     }
 
-    private void insert(Business business) {
+    public void insert(Business business) {
         root = insertRecursive(root, business); 
     }
 
-    private Treenodex insertRecursive(Treenodex root, Business business) { 
+    public Treenodex insertRecursive(Treenodex root, Business business) { 
         if (root == null) { 
             root = new Treenodex(business, null, null); 
             return root; 
@@ -72,7 +95,7 @@ public class Treemapx {
         return root; 
     }
 
-    private ArrayList<Business> searchRating(float rating) {
+    public ArrayList<Business> searchRating(float rating) {
         // ArrayList<Business> rg = searchRatingRecursive(root, rating);
         // if (root != null) {
         //     if (root.getBusiness().getStars() >= rating) {
@@ -93,7 +116,7 @@ public class Treemapx {
         return ratingal;
     }
 
-    private ArrayList<Business> searchRatingRecursive(Treenodex root, float rating) {
+    public ArrayList<Business> searchRatingRecursive(Treenodex root, float rating) {
         // ArrayList<Business> a = new ArrayList<>();
         // if (Double.parseDouble(root.getBusiness().getStars()) >= rating) {
         //     a.add(root.getBusiness());
@@ -118,7 +141,7 @@ public class Treemapx {
         return ratingal;
     }
 
-    private ArrayList<Business> searchReviewCount(int count) {
+    public ArrayList<Business> searchReviewCount(int count) {
         reviewal = searchReviewCountRecursive(root, count);
         if (root != null) {
             if (root.getBusiness().getReviewCount() >= count) {
@@ -128,7 +151,7 @@ public class Treemapx {
         return reviewal;
     }
 
-    private ArrayList<Business> searchReviewCountRecursive(Treenodex root, int count) {
+    public ArrayList<Business> searchReviewCountRecursive(Treenodex root, int count) {
         if (root.getLeft() != null) {
             searchReviewCountRecursive(root.getLeft(), count);
             if (root.getLeft().getBusiness().getReviewCount() >= count) {
@@ -144,7 +167,7 @@ public class Treemapx {
         return reviewal;
     }
 
-    private ArrayList<Business> searchState(String state) {
+    public ArrayList<Business> searchState(String state) {
         stateal = searchStateRecursive(root, state);
         if (root != null) {
             if (root.getBusiness().getState().equals(state)) {
@@ -154,7 +177,7 @@ public class Treemapx {
         return stateal;
     }
 
-    private ArrayList<Business> searchStateRecursive(Treenodex root, String state) {
+    public ArrayList<Business> searchStateRecursive(Treenodex root, String state) {
         if (root.getLeft() != null) {
             searchStateRecursive(root.getLeft(), state);
             if (root.getLeft().getBusiness().getState().equals(state)) {
@@ -170,7 +193,7 @@ public class Treemapx {
         return stateal;
     }
 
-    private ArrayList<Business> searchCity(String city) {
+    public ArrayList<Business> searchCity(String city) {
         cityal = searchCityRecursive(root, city);
         if (root != null) {
             if (root.getBusiness().getCity().equals(city)) {
@@ -180,7 +203,7 @@ public class Treemapx {
         return cityal;
     }
     
-    private ArrayList<Business> searchCityRecursive(Treenodex root, String city) {
+    public ArrayList<Business> searchCityRecursive(Treenodex root, String city) {
         if (root.getLeft() != null) {
             searchCityRecursive(root.getLeft(), city);
             if (root.getLeft().getBusiness().getCity().equals(city)) {
@@ -196,4 +219,45 @@ public class Treemapx {
         return cityal;
     }
 
+    public ArrayList<Business> searchAll(Float rating, int count, String state, String city) {
+        Treemapx map = new Treemapx();
+        map.fill();
+        ArrayList<Business> allal = new ArrayList<Business>();
+        ArrayList<Business> toreturn = new ArrayList<Business>();
+        fillList(map.getRoot(), allal);
+        fillList(map.getRoot(), toreturn);
+        if (rating != null) {
+            ArrayList<Business> temp = map.searchRating(rating);
+            for (Business b : allal) {
+                if (!temp.contains(b)) {
+                    toreturn.remove(b);
+                }
+            }
+        }
+        if (count != 0) {
+            ArrayList<Business> temp = map.searchReviewCount(count);
+            for (Business b : allal) {
+                if (!temp.contains(b)) {
+                    toreturn.remove(b);
+                }
+            }
+        }
+        if (state != null) {
+            ArrayList<Business> temp = map.searchState(state);
+            for (Business b : allal) {
+                if (!temp.contains(b)) {
+                    toreturn.remove(b);
+                }
+            }
+        }
+        if (city != null) {
+            ArrayList<Business> temp = map.searchCity(city);
+            for (Business b : allal) {
+                if (!temp.contains(b)) {
+                    toreturn.remove(b);
+                }
+            }
+        }
+        return toreturn;
+    }
 }
