@@ -1,6 +1,9 @@
 package com.example.demo.avltree;
 
 import com.example.demo.avltree.FloatNode;
+import com.example.demo.business.Business;
+
+import java.util.ArrayList;
 
 public class FloatAVLTree {
 
@@ -27,11 +30,7 @@ public class FloatAVLTree {
             return false;
     }
 
-    // create insertElement() to insert element to to the AVL Tree
-    public void insertElement(float element)
-    {
-        rootNode = insertElement(element, rootNode);
-    }
+
 
     //create getHeight() method to get the height of the AVL Tree
     private int getHeight(FloatNode node )
@@ -45,17 +44,22 @@ public class FloatAVLTree {
         return leftNodeHeight > rightNodeHeight ? leftNodeHeight : rightNodeHeight;
     }
 
+    // create insertElement() to insert element to to the AVL Tree
+    public void insertElement(float element, ArrayList<Business> bizList)
+    {
+        rootNode = insertElement(element, bizList, rootNode);
+    }
 
     //create insertElement() method to insert data in the AVL Tree recursively
-    private FloatNode insertElement(float element, FloatNode node)
+    FloatNode insertElement(float element, ArrayList<Business> bizList, FloatNode node)
     {
         //check whether the node is null or not
         if (node == null)
-            node = new FloatNode(element);
+            node = new FloatNode(element, bizList);
             //insert a node in case when the given element is lesser than the element of the root node
         else if (element < node.element)
         {
-            node.leftChild = insertElement( element, node.leftChild );
+            node.leftChild = insertElement( element, bizList, node.leftChild );
             if( getHeight( node.leftChild ) - getHeight( node.rightChild ) == 2 )
                 if( element < node.leftChild.element )
                     node = rotateWithLeftChild( node );
@@ -64,7 +68,7 @@ public class FloatAVLTree {
         }
         else if( element > node.element )
         {
-            node.rightChild = insertElement( element, node.rightChild );
+            node.rightChild = insertElement( element, bizList, node.rightChild );
             if( getHeight( node.rightChild ) - getHeight( node.leftChild ) == 2 )
                 if( element > node.rightChild.element)
                     node = rotateWithRightChild( node );
@@ -158,6 +162,36 @@ public class FloatAVLTree {
         }
         return check;
     }
+    FloatNode getElement(float element){
+        return getElement(rootNode, element);
+    }
+
+    FloatNode getElement(FloatNode head, float element)
+    {
+        boolean check = false;
+        while ((head != null) && !check)
+        {
+            float headElement = head.element;
+            if (element < headElement)
+                head = head.leftChild;
+            else if (element > headElement)
+                head = head.rightChild;
+            else
+            {
+
+                check = true;
+                return head;
+//                break;
+            }
+            head = getElement(head, element);
+        }
+        if (check){
+            return head;
+        } else {
+            return null;
+        }
+    }
+
     // create inorderTraversal() method for traversing AVL Tree in in-order form
     public void inorderTraversal()
     {
@@ -169,6 +203,7 @@ public class FloatAVLTree {
         {
             inorderTraversal(head.leftChild);
             System.out.print(head.element+" ");
+            System.out.print(head.bizList);
             inorderTraversal(head.rightChild);
         }
     }
@@ -203,4 +238,27 @@ public class FloatAVLTree {
             System.out.print(head.element+" ");
         }
     }
+
+
+    public void getMinFloat(Float minFloat, ArrayList<Business> returnBizList)
+    {
+        getMinFloat(minFloat, rootNode, returnBizList);
+    }
+    private void getMinFloat(Float minFloat, FloatNode head, ArrayList<Business> returnBizList)
+    {
+
+        if (head != null && head.element >= minFloat){
+            getMinFloat(minFloat, head.leftChild, returnBizList);
+            for (Business temp : head.bizList){
+                returnBizList.add(temp);
+            }
+//            System.out.print(head.element+" ");
+
+        } else if (head != null && head.element < minFloat){
+            getMinFloat(minFloat, head.rightChild, returnBizList);
+        }
+
+
+    }
+
 }

@@ -1,8 +1,13 @@
 package com.example.demo.avltree;
 
+import com.example.demo.business.Business;
+
+import java.util.ArrayList;
+
 public class FloatNode {
 
     float element;
+    ArrayList<Business> bizList;
     int h;  //for height
     FloatNode leftChild;
     FloatNode rightChild;
@@ -13,14 +18,16 @@ public class FloatNode {
         leftChild = null;
         rightChild = null;
         element = 0;
+        bizList = null;
         h = 0;
     }
     // parameterized constructor
-    public FloatNode(float element)
+    public FloatNode(float element, ArrayList<Business> bizList)
     {
         leftChild = null;
         rightChild = null;
         this.element = element;
+        this.bizList = bizList;
         h = 0;
     }
 

@@ -1,8 +1,12 @@
 package com.example.demo.avltree;
 
+import com.example.demo.business.Business;
+
+import java.util.ArrayList;
+
 public class StringAVLTree {
 
-    private StringNode rootNode;
+    StringNode rootNode;
 
     //Constructor to set null value to the rootNode
     public StringAVLTree()
@@ -23,9 +27,9 @@ public class StringAVLTree {
     }
 
     // create insertElement() to insert element to to the AVL Tree
-    public void insertElement(String element)
+    public void insertElement(String element, ArrayList<Business> bizList)
     {
-        rootNode = insertElement(element, rootNode);
+        rootNode = insertElement(element, bizList, rootNode);
     }
 
     //create getHeight() method to get the height of the AVL Tree
@@ -42,15 +46,15 @@ public class StringAVLTree {
 
 
     //create insertElement() method to insert data in the AVL Tree recursively
-    private StringNode insertElement(String element, StringNode node)
+    private StringNode insertElement(String element, ArrayList<Business> bizList, StringNode node)
     {
         //check whether the node is null or not
         if (node == null)
-            node = new StringNode(element);
+            node = new StringNode(element, bizList);
             //insert a node in case when the given element is lesser than the element of the root node
         else if (element.compareTo(node.element) <= 0)
         {
-            node.leftChild = insertElement( element, node.leftChild );
+            node.leftChild = insertElement( element, bizList, node.leftChild );
             if( getHeight( node.leftChild ) - getHeight( node.rightChild ) == 2 )
                 if( element.compareTo(node.leftChild.element) <= 0 )
                     node = rotateWithLeftChild( node );
@@ -59,7 +63,7 @@ public class StringAVLTree {
         }
         else if( element.compareTo(node.element) > 0 )
         {
-            node.rightChild = insertElement( element, node.rightChild );
+            node.rightChild = insertElement( element, bizList,node.rightChild );
             if( getHeight( node.rightChild ) - getHeight( node.leftChild ) == 2 )
                 if( element.compareTo(node.rightChild.element) > 0)
                     node = rotateWithRightChild( node );
@@ -115,6 +119,7 @@ public class StringAVLTree {
     {
         return getTotalNumberOfNodes(rootNode);
     }
+
     private int getTotalNumberOfNodes(StringNode head)
     {
         if (head == null)
@@ -140,7 +145,7 @@ public class StringAVLTree {
         while ((head != null) && !check)
         {
             String headElement = head.element;
-            if (element.compareTo(headElement) <= 0)
+            if (element.compareTo(headElement) < 0)
                 head = head.leftChild;
             else if (element.compareTo(headElement) > 0)
                 head = head.rightChild;
@@ -153,6 +158,35 @@ public class StringAVLTree {
         }
         return check;
     }
+
+    StringNode getElement(String element){
+        return getElement(rootNode, element);
+    }
+
+    StringNode getElement(StringNode head, String element)
+    {
+        boolean check = false;
+        while ((head != null) && !check)
+        {
+            String headElement = head.element;
+            if (element.compareTo(headElement) < 0)
+                head = head.leftChild;
+            else if (element.compareTo(headElement) > 0)
+                head = head.rightChild;
+            else
+            {
+                check = true;
+                break;
+            }
+            head = getElement(head, element);
+        }
+
+        if (check){
+            return head;
+        } else {
+            return null;
+        }
+    }
     // create inorderTraversal() method for traversing AVL Tree in in-order form
     public void inorderTraversal()
     {
@@ -163,7 +197,7 @@ public class StringAVLTree {
         if (head != null)
         {
             inorderTraversal(head.leftChild);
-            System.out.print(head.element+" ");
+            System.out.print(head.bizList+" ");
             inorderTraversal(head.rightChild);
         }
     }
@@ -199,5 +233,57 @@ public class StringAVLTree {
         }
     }
 
+    public void returnOrderedList(ArrayList<Business> returnBizList){ returnOrderedList(rootNode, returnBizList); }
 
+    public void returnOrderedList(StringNode head, ArrayList<Business> returnBizList){
+        if (head != null)
+        {
+            returnOrderedList(head.leftChild, returnBizList);
+//            System.out.println(head.element);
+            returnBizList.addAll(head.bizList);
+            returnOrderedList(head.rightChild, returnBizList);
+        }
+    }
+
+    public void getStateList(String state, ArrayList<Business> returnBizList)
+    {
+        getStateList(state, rootNode, returnBizList);
+    }
+    private void getStateList(String state, StringNode head, ArrayList<Business> returnBizList)
+    {
+//        System.out.println(head.element);
+        if (head != null && state.compareTo(head.element) == 0)
+        {
+
+            returnBizList.addAll(head.bizList);
+//            System.out.print(head.element+" ");
+
+        } else if (head != null){
+            getStateList(state, head.leftChild, returnBizList);
+            getStateList(state, head.rightChild, returnBizList);
+        }
+
+
+    }
+    public void getCityList(String city, ArrayList<Business> returnBizList)
+    {
+        getCityList(city, rootNode, returnBizList);
+    }
+    private void getCityList(String city, StringNode head, ArrayList<Business> returnBizList)
+    {
+
+//        System.out.println(head.element);
+        if (head != null && city.compareTo(head.element) == 0)
+        {
+
+            returnBizList.addAll(head.bizList);
+//            System.out.print(head.element+" ");
+
+        } else if (head != null){
+            getCityList(city, head.leftChild, returnBizList);
+            getCityList(city, head.rightChild, returnBizList);
+        }
+
+
+    }
 }

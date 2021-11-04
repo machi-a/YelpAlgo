@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import com.example.demo.avltree.*;
 import com.example.demo.NestedTree.*;
 import com.example.demo.business.Business;
 import com.example.demo.reader.ReadToArray;
@@ -23,6 +24,9 @@ public class Cs201Application {
 	static long endTime = 0;
 	public static void main(String[] args) {
 //		SpringApplication.run(Cs201Application.class, args);
+
+		String filepath = "CS201/src/main/resources/yelp_academic_dataset_business.json";
+
 		Hashmap hashmap= new Hashmap();
 
 		ReadToArray fileReader = new ReadToArray();
@@ -281,6 +285,9 @@ public class Cs201Application {
 
 
 
+
+		AVLTree avlTree = new AVLTree(filepath);
+		System.out.println(avlTree.filterAll(1.50F, 0, "MA", null));
 	}
 
 	public static void fileSizeCalculator(Object obj){
@@ -304,5 +311,8 @@ public class Cs201Application {
 			System.out.println("Test1_Hashmap: IOException is caught");
 		}
 	}
+
+
+
 
 }

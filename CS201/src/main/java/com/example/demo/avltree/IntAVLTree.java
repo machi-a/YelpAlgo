@@ -1,5 +1,8 @@
 package com.example.demo.avltree;
 import com.example.demo.avltree.IntNode;
+import com.example.demo.business.Business;
+
+import java.util.ArrayList;
 
 public class IntAVLTree {
 
@@ -20,16 +23,13 @@ public class IntAVLTree {
     // create checkEmpty() method to check whether the AVL Tree is empty or not
     public boolean checkEmpty()
     {
-        if(rootNode == null)
-            return true;
-        else
-            return false;
+        return rootNode == null;
     }
 
     // create insertElement() to insert element to to the AVL Tree
-    public void insertElement(int element)
+    public void insertElement(int element, ArrayList<Business> bizList)
     {
-        rootNode = insertElement(element, rootNode);
+        rootNode = insertElement(element, bizList, rootNode);
     }
 
     //create getHeight() method to get the height of the AVL Tree
@@ -46,15 +46,15 @@ public class IntAVLTree {
 
 
     //create insertElement() method to insert data in the AVL Tree recursively
-    private IntNode insertElement(int element, IntNode node)
+    private IntNode insertElement(int element, ArrayList<Business> bizList, IntNode node)
     {
         //check whether the node is null or not
         if (node == null)
-            node = new IntNode(element);
+            node = new IntNode(element, bizList);
             //insert a node in case when the given element is lesser than the element of the root node
         else if (element < node.element)
         {
-            node.leftChild = insertElement( element, node.leftChild );
+            node.leftChild = insertElement( element, bizList, node.leftChild );
             if( getHeight( node.leftChild ) - getHeight( node.rightChild ) == 2 )
                 if( element < node.leftChild.element )
                     node = rotateWithLeftChild( node );
@@ -63,7 +63,7 @@ public class IntAVLTree {
         }
         else if( element > node.element )
         {
-            node.rightChild = insertElement( element, node.rightChild );
+            node.rightChild = insertElement( element, bizList, node.rightChild );
             if( getHeight( node.rightChild ) - getHeight( node.leftChild ) == 2 )
                 if( element > node.rightChild.element)
                     node = rotateWithRightChild( node );
@@ -157,6 +157,36 @@ public class IntAVLTree {
         }
         return check;
     }
+
+    IntNode getElement(int element){
+        return getElement(rootNode, element);
+    }
+
+    IntNode getElement(IntNode head, int element)
+    {
+        boolean check = false;
+        while ((head != null) && !check)
+        {
+            int headElement = head.element;
+            if (element < headElement)
+                head = head.leftChild;
+            else if (element > headElement)
+                head = head.rightChild;
+            else
+            {
+                check = true;
+                break;
+            }
+            head = getElement(head, element);
+        }
+
+        if (check){
+            return head;
+        } else {
+            return null;
+        }
+    }
+
     // create inorderTraversal() method for traversing AVL Tree in in-order form
     public void inorderTraversal()
     {
@@ -203,5 +233,40 @@ public class IntAVLTree {
         }
     }
 
+    public void getMinInt(int minInt, ArrayList<Business> returnBizList)
+    {
+        getMinInt(minInt, rootNode, returnBizList);
+    }
+    private void getMinInt(int minInt, IntNode head, ArrayList<Business> returnBizList)
+    {
 
+        if (head != null && head.element >= minInt)
+        {
+            getMinInt(minInt, head.leftChild, returnBizList);
+            returnBizList.addAll(head.bizList);
+            System.out.print(head.element+" ");
+            getMinInt(minInt, head.rightChild, returnBizList);
+        }
+
+
+    }
+
+    public void getMinReview(int minReview, ArrayList<Business> returnBizList)
+    {
+        getMinReview(minReview, rootNode, returnBizList);
+    }
+    private void getMinReview(int minReview, IntNode head, ArrayList<Business> returnBizList)
+    {
+
+        if (head != null && head.element >= minReview)
+        {
+            getMinReview(minReview, head.leftChild, returnBizList);
+            returnBizList.addAll(head.bizList);
+//            System.out.print(head.element+" ");
+        } else if (head != null && head.element < minReview){
+            getMinReview(minReview, head.rightChild, returnBizList);
+        }
+
+
+    }
 }
