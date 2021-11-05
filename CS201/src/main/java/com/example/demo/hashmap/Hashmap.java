@@ -9,12 +9,12 @@ import java.util.*;
 public class Hashmap implements Serializable {
     private static final long serialVersionUID = 1L;
     private static List<Business> businessList;
-    private static ChainHashMap<String,Business> bizList;
+    private static ProbeHashMap<String,Business> bizList;
 
     public Hashmap(String filepath){
         ReadToArray fileReader = new ReadToArray();
         businessList = fileReader.readFile(filepath);
-        bizList = new ChainHashMap<>();
+        bizList = new ProbeHashMap<>();
         for (Business b: businessList) {
             bizList.put(b.getBusinessId(), b);
         }
