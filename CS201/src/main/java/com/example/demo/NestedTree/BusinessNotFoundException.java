@@ -1,4 +1,4 @@
-package com.example.demo.NestedTree;
+package com.example.demo.nestedtree;
 
 public class BusinessNotFoundException extends RuntimeException{
     public BusinessNotFoundException(){
