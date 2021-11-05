@@ -1,22 +1,18 @@
 package com.example.demo;
 
-import com.example.demo.avltree.*;
-import com.example.demo.NestedTree.*;
-import com.example.demo.business.Business;
-import com.example.demo.reader.ReadToArray;
-import com.example.demo.multitrees.Filter;
+import com.example.demo.avltree.AVLTree;
+import com.example.demo.nestedtree.*;
+import com.example.demo.multitrees.MultiTreemap;
 import com.example.demo.hashmap.Hashmap;
 import com.example.demo.treemap.Treemapx;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.*;
 
 @SpringBootApplication
 public class Cs201Application {
@@ -45,6 +41,7 @@ public class Cs201Application {
 
 		startTime = System.nanoTime();
 		// TODO: Jasmine add MultipleTreeMap creation code here
+		MultiTreemap multiTreemap = new MultiTreemap(filepath); // I think for li's and mine, when we run this we are just creating 
 		endTime = System.nanoTime();
 		duration = (endTime - startTime);  //divide by 1000000 to get milliseconds.
 		System.out.println("The MultipleTreeMap took " + duration + "ns to complete storing.");
@@ -97,9 +94,35 @@ public class Cs201Application {
 
 		startTime = System.nanoTime();
 		// TODO: Jasmine add MultipleTreeMap filter code here
+		multiTreemap.filterAll(minStars, minReviews, state, city);
 		endTime = System.nanoTime();
 		duration = (endTime - startTime);  //divide by 1000000 to get milliseconds.
 		System.out.println("MultipleTreeMap took " + duration + "ns to filter for test case " + testCase + ".");
+
+		System.out.println(multiTreemap);
+
+		// TESTING OF SPACE COMPLEXITY
+		// try {   
+		// 	//Saving of object in a file
+		// 	String path = "/Users/jasminequek/Desktop/CS201 Data/project/Test1_MultiTreemap";
+		// 	FileOutputStream file = new FileOutputStream(path);
+		// 	ObjectOutputStream out = new ObjectOutputStream(file);
+			
+		// 	// Method for serialization of object
+		// 	out.writeObject(multiTreemap.filterAll(minStars, minReviews, state, city)); // object to serialise
+			
+		// 	out.close();
+		// 	file.close();
+
+		// 	long Test1Size_MultiTreemap = Files.size(Paths.get(path));
+			
+		// 	System.out.println("Test1_Treemap: Object has been serialized");
+		// 	System.out.println("Size of file: " + Test1Size_MultiTreemap + "bytes");
+		// } catch(IOException ex) {
+		// 	System.out.println("Test1_Treemap: IOException is caught");
+		// }
+
+		// ----------------------------------------------------------------
 
 		startTime = System.nanoTime();
 		avlTree.filterAll(minStars, minReviews, state, city);
@@ -167,6 +190,7 @@ public class Cs201Application {
 
 		startTime = System.nanoTime();
 		// TODO: Jasmine add MultipleTreeMap filter code here
+		multiTreemap.filterAll(minStars, minReviews, state, city);
 		endTime = System.nanoTime();
 		duration = (endTime - startTime);  //divide by 1000000 to get milliseconds.
 		System.out.println("MultipleTreeMap took " + duration + "ns to filter for test case " + testCase + ".");
@@ -241,6 +265,7 @@ public class Cs201Application {
 
 		startTime = System.nanoTime();
 		// TODO: Jasmine add MultipleTreeMap filter code here
+		multiTreemap.filterAll(minStars, minReviews, state, city);
 		endTime = System.nanoTime();
 		duration = (endTime - startTime);  //divide by 1000000 to get milliseconds.
 		System.out.println("MultipleTreeMap took " + duration + "ns to filter for test case " + testCase + ".");
@@ -311,9 +336,33 @@ public class Cs201Application {
 
 		startTime = System.nanoTime();
 		// TODO: Jasmine add MultipleTreeMap filter code here
+		multiTreemap.filterAll(minStars, minReviews, state, city);
 		endTime = System.nanoTime();
 		duration = (endTime - startTime);  //divide by 1000000 to get milliseconds.
 		System.out.println("MultipleTreeMap took " + duration + "ns to filter for test case " + testCase + ".");
+
+	// TESTING OF SPACE COMPLEXITY
+	try {   
+		//Saving of object in a file
+		String path = "/Users/jasminequek/Desktop/CS201 Data/project/Test1_MultiTreemap";
+		FileOutputStream file = new FileOutputStream(path);
+		ObjectOutputStream out = new ObjectOutputStream(file);
+		
+		// Method for serialization of object
+		out.writeObject(multiTreemap.filterAll(minStars, minReviews, state, city)); // object to serialise
+		
+		out.close();
+		file.close();
+
+		long Test4Size_MultiTreemap = Files.size(Paths.get(path));
+		
+		System.out.println("Test4_Treemap: Object has been serialized");
+		System.out.println("Size of file: " + Test4Size_MultiTreemap + "bytes");
+	} catch(IOException ex) {
+		System.out.println("Test1_Treemap: IOException is caught");
+	}
+
+	// ----------------------------------------------------------------
 
 		startTime = System.nanoTime();
 		avlTree.filterAll(minStars, minReviews, state, city);

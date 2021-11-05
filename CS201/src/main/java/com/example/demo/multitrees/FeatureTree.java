@@ -13,9 +13,9 @@ public class FeatureTree implements Serializable {
     private static final long serialVersionUID = 1L;
     private List<Business> businessList;
 
-    public FeatureTree() {
+    public FeatureTree(String filepath) {
         ReadToArray fileReader = new ReadToArray();
-		businessList = fileReader.readFile("CS201/src/main/resources/yelp_academic_dataset_business.json");
+		businessList = fileReader.readFile(filepath);
     }
 
     public Map<Float, ArrayList<Business>> createStarsTreeMap() {

@@ -1,4 +1,4 @@
-package com.example.demo.NestedTree;
+package com.example.demo.nestedtree;
 
 import com.example.demo.business.Business;
 import com.google.gson.Gson;

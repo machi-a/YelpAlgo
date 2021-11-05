@@ -1,4 +1,4 @@
-package com.example.demo.NestedTree;
+package com.example.demo.nestedtree;
 
 import com.google.gson.Gson;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
