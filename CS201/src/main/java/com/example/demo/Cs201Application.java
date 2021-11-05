@@ -35,8 +35,8 @@ public class Cs201Application {
 		long startTime = System.nanoTime();
 		Hashmap hashmap = new Hashmap(filepath);
 		long endTime = System.nanoTime();
-		long duration = (endTime - startTime);  //divide by 1000000 to get milliseconds.
-		System.out.println("The HashMap took " + duration + "ns to complete storing.");
+		long duration = ((endTime - startTime)/1000);   //divide by 1000000 to get milliseconds.
+		System.out.println("The HashMap took " + duration + " μs to complete storing.");
 
 //-------------------------Filter Test Case 1--------------------------------------------------------------------------
 
@@ -63,26 +63,26 @@ public class Cs201Application {
 		startTime = System.nanoTime();
 		hashmap.filterAllKeySet(minStars, minReviews, state, city);
 		endTime = System.nanoTime();
-		duration = (endTime - startTime);
-		System.out.println("HashMap with key set took " + duration + "ns to filter for test case " + testCase + ".");
+		duration = ((endTime - startTime)/1000); 
+		System.out.println("HashMap with key set took " + duration + "μs to filter for test case " + testCase + ".");
 
 		startTime = System.nanoTime();
 		hashmap.filterAllEntrySet(minStars, minReviews, state, city);
 		endTime = System.nanoTime();
-		duration = (endTime - startTime);
-		System.out.println("HashMap with entry set took " + duration + "ns to filter for test case " + testCase + ".");
+		duration = ((endTime - startTime)/1000); 
+		System.out.println("HashMap with entry set took " + duration + "μs to filter for test case " + testCase + ".");
 
 
 		hashmap.filterAllEntryIter(minStars, minReviews, state, city);
 		endTime = System.nanoTime();
-		duration = (endTime - startTime);
-		System.out.println("HashMap with entry Iteration took " + duration + "ns to filter for test case " + testCase + ".");
+		duration = ((endTime - startTime)/1000); 
+		System.out.println("HashMap with entry Iteration took " + duration + "μs to filter for test case " + testCase + ".");
 
 
 		hashmap.filterAllKeyIter(minStars, minReviews, state, city);
 		endTime = System.nanoTime();
-		duration = (endTime - startTime);
-		System.out.println("HashMap with key Iteration took " + duration + "ns to filter for test case " + testCase + ".");
+		duration = ((endTime - startTime)/1000); 
+		System.out.println("HashMap with key Iteration took " + duration + "μs to filter for test case " + testCase + ".");
 
 
 //-------------------------Filter Test Case 2--------------------------------------------------------------------------
@@ -110,26 +110,26 @@ public class Cs201Application {
 		startTime = System.nanoTime();
 		hashmap.filterAllKeySet(minStars, minReviews, state, city);
 		endTime = System.nanoTime();
-		duration = (endTime - startTime);
-		System.out.println("HashMap with key set took " + duration + "ns to filter for test case " + testCase + ".");
+		duration = ((endTime - startTime)/1000); 
+		System.out.println("HashMap with key set took " + duration + "μs to filter for test case " + testCase + ".");
 
 		startTime = System.nanoTime();
 		hashmap.filterAllEntrySet(minStars, minReviews, state, city);
 		endTime = System.nanoTime();
-		duration = (endTime - startTime);
-		System.out.println("HashMap with entry set took " + duration + "ns to filter for test case " + testCase + ".");
+		duration = ((endTime - startTime)/1000); 
+		System.out.println("HashMap with entry set took " + duration + "μs to filter for test case " + testCase + ".");
 
 
 		hashmap.filterAllEntryIter(minStars, minReviews, state, city);
 		endTime = System.nanoTime();
-		duration = (endTime - startTime);
-		System.out.println("HashMap with entry Iteration took " + duration + "ns to filter for test case " + testCase + ".");
+		duration = ((endTime - startTime)/1000); 
+		System.out.println("HashMap with entry Iteration took " + duration + "μs to filter for test case " + testCase + ".");
 
 
 		hashmap.filterAllKeyIter(minStars, minReviews, state, city);
 		endTime = System.nanoTime();
-		duration = (endTime - startTime);
-		System.out.println("HashMap with key Iteration took " + duration + "ns to filter for test case " + testCase + ".");
+		duration = ((endTime - startTime)/1000); 
+		System.out.println("HashMap with key Iteration took " + duration + "μs to filter for test case " + testCase + ".");
 
 
 //-------------------------Filter Test Case 3--------------------------------------------------------------------------
@@ -157,26 +157,26 @@ public class Cs201Application {
 		startTime = System.nanoTime();
 		hashmap.filterAllKeySet(minStars, minReviews, state, city);
 		endTime = System.nanoTime();
-		duration = (endTime - startTime);
-		System.out.println("ProbeHashMap with key set took " + duration + "ns to filter for test case " + testCase + ".");
+		duration = ((endTime - startTime)/1000); 
+		System.out.println("ProbeHashMap with key set took " + duration + "μs to filter for test case " + testCase + ".");
 
 		startTime = System.nanoTime();
 		hashmap.filterAllEntrySet(minStars, minReviews, state, city);
 		endTime = System.nanoTime();
-		duration = (endTime - startTime);
-		System.out.println("ProbeHashMap with entry set took " + duration + "ns to filter for test case " + testCase + ".");
+		duration = ((endTime - startTime)/1000); 
+		System.out.println("ProbeHashMap with entry set took " + duration + "μs to filter for test case " + testCase + ".");
 
 
 		hashmap.filterAllEntryIter(minStars, minReviews, state, city);
 		endTime = System.nanoTime();
-		duration = (endTime - startTime);
-		System.out.println("ProbeHashMap with entry Iteration took " + duration + "ns to filter for test case " + testCase + ".");
+		duration = ((endTime - startTime)/1000); 
+		System.out.println("ProbeHashMap with entry Iteration took " + duration + "μs to filter for test case " + testCase + ".");
 
 
 		hashmap.filterAllKeyIter(minStars, minReviews, state, city);
 		endTime = System.nanoTime();
-		duration = (endTime - startTime);
-		System.out.println("ProbeHashMap with key Iteration took " + duration + "ns to filter for test case " + testCase + ".");
+		duration = ((endTime - startTime)/1000); 
+		System.out.println("ProbeHashMap with key Iteration took " + duration + "μs to filter for test case " + testCase + ".");
 //-------------------------Filter Test Case 4--------------------------------------------------------------------------
 
 		/*
@@ -202,26 +202,26 @@ public class Cs201Application {
 		startTime = System.nanoTime();
 		hashmap.filterAllKeySet(minStars, minReviews, state, city);
 		endTime = System.nanoTime();
-		duration = (endTime - startTime);
-		System.out.println("ProbeHashMap with key set took " + duration + "ns to filter for test case " + testCase + ".");
+		duration = ((endTime - startTime)/1000); 
+		System.out.println("ProbeHashMap with key set took " + duration + "μs to filter for test case " + testCase + ".");
 
 		startTime = System.nanoTime();
 		hashmap.filterAllEntrySet(minStars, minReviews, state, city);
 		endTime = System.nanoTime();
-		duration = (endTime - startTime);
-		System.out.println("ProbeHashMap with entry set took " + duration + "ns to filter for test case " + testCase + ".");
+		duration = ((endTime - startTime)/1000); 
+		System.out.println("ProbeHashMap with entry set took " + duration + "μs to filter for test case " + testCase + ".");
 
 
 		hashmap.filterAllEntryIter(minStars, minReviews, state, city);
 		endTime = System.nanoTime();
-		duration = (endTime - startTime);
-		System.out.println("ProbeHashMap with entry Iteration took " + duration + "ns to filter for test case " + testCase + ".");
+		duration = ((endTime - startTime)/1000); 
+		System.out.println("ProbeHashMap with entry Iteration took " + duration + "μs to filter for test case " + testCase + ".");
 
 
 		hashmap.filterAllKeyIter(minStars, minReviews, state, city);
 		endTime = System.nanoTime();
-		duration = (endTime - startTime);
-		System.out.println("ProbeHashMap with key Iteration took " + duration + "ns to filter for test case " + testCase + ".");
+		duration = ((endTime - startTime)/1000); 
+		System.out.println("ProbeHashMap with key Iteration took " + duration + "μs to filter for test case " + testCase + ".");
 
 //-------------------------Filter Test Case 5--------------------------------------------------------------------------
 
@@ -249,26 +249,26 @@ public class Cs201Application {
 		startTime = System.nanoTime();
 		hashmap.filterAllKeySet(minStars, minReviews, state, city);
 		endTime = System.nanoTime();
-		duration = (endTime - startTime);
-		System.out.println("ProbeHashMap with key set took " + duration + "ns to filter for test case " + testCase + ".");
+		duration = ((endTime - startTime)/1000); 
+		System.out.println("ProbeHashMap with key set took " + duration + "μs to filter for test case " + testCase + ".");
 
 		startTime = System.nanoTime();
 		hashmap.filterAllEntrySet(minStars, minReviews, state, city);
 		endTime = System.nanoTime();
-		duration = (endTime - startTime);
-		System.out.println("ProbeHashMap with entry set took " + duration + "ns to filter for test case " + testCase + ".");
+		duration = ((endTime - startTime)/1000); 
+		System.out.println("ProbeHashMap with entry set took " + duration + "μs to filter for test case " + testCase + ".");
 
 
 		hashmap.filterAllEntryIter(minStars, minReviews, state, city);
 		endTime = System.nanoTime();
-		duration = (endTime - startTime);
-		System.out.println("ProbeHashMap with entry Iteration took " + duration + "ns to filter for test case " + testCase + ".");
+		duration = ((endTime - startTime)/1000); 
+		System.out.println("ProbeHashMap with entry Iteration took " + duration + "μs to filter for test case " + testCase + ".");
 
 
 		hashmap.filterAllKeyIter(minStars, minReviews, state, city);
 		endTime = System.nanoTime();
-		duration = (endTime - startTime);
-		System.out.println("ProbeHashMap with key Iteration took " + duration + "ns to filter for test case " + testCase + ".");
+		duration = ((endTime - startTime)/1000); 
+		System.out.println("ProbeHashMap with key Iteration took " + duration + "μs to filter for test case " + testCase + ".");
 	}
 
 
