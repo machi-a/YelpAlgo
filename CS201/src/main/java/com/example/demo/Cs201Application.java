@@ -34,32 +34,32 @@ public class Cs201Application {
 		long startTime = System.nanoTime();
 		// TODO: Charis add TreeMap creation code here
 		long endTime = System.nanoTime();
-		long Test1duration_MultiTree = (endTime - startTime);  //divide by 1000000 to get milliseconds.
-		System.out.println("The Treemap took " + Test1duration_MultiTree + "ns to complete storing.");
+		long duration = (endTime - startTime);  //divide by 1000000 to get milliseconds.
+		System.out.println("The Treemap took " + duration + "ns to complete storing.");
 
 		startTime = System.nanoTime();
 		// TODO: Charlene add NestedTree creation code here
 		endTime = System.nanoTime();
-		Test1duration_MultiTree = (endTime - startTime);  //divide by 1000000 to get milliseconds.
-		System.out.println("The NestedTree took " + Test1duration_MultiTree + "ns to complete storing.");
+		duration = (endTime - startTime);  //divide by 1000000 to get milliseconds.
+		System.out.println("The NestedTree took " + duration + "ns to complete storing.");
 
 		startTime = System.nanoTime();
 		// TODO: Jasmine add MultipleTreeMap creation code here
 		endTime = System.nanoTime();
-		Test1duration_MultiTree = (endTime - startTime);  //divide by 1000000 to get milliseconds.
-		System.out.println("The MultipleTreeMap took " + Test1duration_MultiTree + "ns to complete storing.");
+		duration = (endTime - startTime);  //divide by 1000000 to get milliseconds.
+		System.out.println("The MultipleTreeMap took " + duration + "ns to complete storing.");
 
 		startTime = System.nanoTime();
 		AVLTree avlTree = new AVLTree(filepath);
 		endTime = System.nanoTime();
-		Test1duration_MultiTree = (endTime - startTime);  //divide by 1000000 to get milliseconds.
-		System.out.println("The AVLTree took " + Test1duration_MultiTree + "ns to complete storing.");
+		duration = (endTime - startTime);  //divide by 1000000 to get milliseconds.
+		System.out.println("The AVLTree took " + duration + "ns to complete storing.");
 
 		startTime = System.nanoTime();
 		Hashmap hashmap = new Hashmap(filepath);
 		endTime = System.nanoTime();
-		Test1duration_MultiTree = (endTime - startTime);  //divide by 1000000 to get milliseconds.
-		System.out.println("The HashMap took " + Test1duration_MultiTree + "ns to complete storing.");
+		duration = (endTime - startTime);  //divide by 1000000 to get milliseconds.
+		System.out.println("The HashMap took " + duration + "ns to complete storing.");
 //-------------------------Filter Test Case 1--------------------------------------------------------------------------
 
 		/*
@@ -86,33 +86,50 @@ public class Cs201Application {
 		startTime = System.nanoTime();
 		// TODO: Charis add TreeMap filter code here
 		endTime = System.nanoTime();
-		Test1duration_MultiTree = (endTime - startTime);  //divide by 1000000 to get milliseconds.
-		System.out.println("Treemap took " + Test1duration_MultiTree + "ns to filter for test case " + testCase + ".");
+		duration = (endTime - startTime);  //divide by 1000000 to get milliseconds.
+		System.out.println("Treemap took " + duration + "ns to filter for test case " + testCase + ".");
 
 		startTime = System.nanoTime();
 		// TODO: Charlene add NestedTree filter code here
 		endTime = System.nanoTime();
-		Test1duration_MultiTree = (endTime - startTime);  //divide by 1000000 to get milliseconds.
-		System.out.println("NestedTree took " + Test1duration_MultiTree + "ns to filter for test case " + testCase + ".");
+		duration = (endTime - startTime);  //divide by 1000000 to get milliseconds.
+		System.out.println("NestedTree took " + duration + "ns to filter for test case " + testCase + ".");
 
 		startTime = System.nanoTime();
 		// TODO: Jasmine add MultipleTreeMap filter code here
 		endTime = System.nanoTime();
-		Test1duration_MultiTree = (endTime - startTime);  //divide by 1000000 to get milliseconds.
-		System.out.println("MultipleTreeMap took " + Test1duration_MultiTree + "ns to filter for test case " + testCase + ".");
+		duration = (endTime - startTime);  //divide by 1000000 to get milliseconds.
+		System.out.println("MultipleTreeMap took " + duration + "ns to filter for test case " + testCase + ".");
 
 		startTime = System.nanoTime();
 		avlTree.filterAll(minStars, minReviews, state, city);
 		endTime = System.nanoTime();
-		Test1duration_MultiTree = (endTime - startTime);  //divide by 1000000 to get milliseconds.
-		System.out.println("AVLTree took " + Test1duration_MultiTree + "ns to filter for test case " + testCase + ".");
+		duration = (endTime - startTime);  //divide by 1000000 to get milliseconds.
+		System.out.println("AVLTree took " + duration + "ns to filter for test case " + testCase + ".");
 
 		startTime = System.nanoTime();
-		// TODO: Li add HashMap filter code here
+		hashmap.filterAllKeySet(minStars, minReviews, state, city);
 		endTime = System.nanoTime();
-		Test1duration_MultiTree = (endTime - startTime);  //divide by 1000000 to get milliseconds.
-		System.out.println("HashMap took " + Test1duration_MultiTree + "ns to filter for test case " + testCase + ".");
+		duration = (endTime - startTime);
+		System.out.println("HashMap with key set took " + duration + "ns to filter for test case " + testCase + ".");
 
+		startTime = System.nanoTime();
+		hashmap.filterAllEntrySet(minStars, minReviews, state, city);
+		endTime = System.nanoTime();
+		duration = (endTime - startTime);
+		System.out.println("HashMap with entry set took " + duration + "ns to filter for test case " + testCase + ".");
+
+
+		hashmap.filterAllEntryIter(minStars, minReviews, state, city);
+		endTime = System.nanoTime();
+		duration = (endTime - startTime);
+		System.out.println("HashMap with entry Iteration took " + duration + "ns to filter for test case " + testCase + ".");
+
+
+		hashmap.filterAllKeyIter(minStars, minReviews, state, city);
+		endTime = System.nanoTime();
+		duration = (endTime - startTime);
+		System.out.println("HashMap with key Iteration took " + duration + "ns to filter for test case " + testCase + ".");
 //-------------------------Filter Test Case 2--------------------------------------------------------------------------
 
 		/*
@@ -139,32 +156,50 @@ public class Cs201Application {
 		startTime = System.nanoTime();
 		// TODO: Charis add TreeMap filter code here
 		endTime = System.nanoTime();
-		Test1duration_MultiTree = (endTime - startTime);  //divide by 1000000 to get milliseconds.
-		System.out.println("Treemap took " + Test1duration_MultiTree + "ns to filter for test case " + testCase + ".");
+		duration = (endTime - startTime);  //divide by 1000000 to get milliseconds.
+		System.out.println("Treemap took " + duration + "ns to filter for test case " + testCase + ".");
 
 		startTime = System.nanoTime();
 		// TODO: Charlene add NestedTree filter code here
 		endTime = System.nanoTime();
-		Test1duration_MultiTree = (endTime - startTime);  //divide by 1000000 to get milliseconds.
-		System.out.println("NestedTree took " + Test1duration_MultiTree + "ns to filter for test case " + testCase + ".");
+		duration = (endTime - startTime);  //divide by 1000000 to get milliseconds.
+		System.out.println("NestedTree took " + duration + "ns to filter for test case " + testCase + ".");
 
 		startTime = System.nanoTime();
 		// TODO: Jasmine add MultipleTreeMap filter code here
 		endTime = System.nanoTime();
-		Test1duration_MultiTree = (endTime - startTime);  //divide by 1000000 to get milliseconds.
-		System.out.println("MultipleTreeMap took " + Test1duration_MultiTree + "ns to filter for test case " + testCase + ".");
+		duration = (endTime - startTime);  //divide by 1000000 to get milliseconds.
+		System.out.println("MultipleTreeMap took " + duration + "ns to filter for test case " + testCase + ".");
 
 		startTime = System.nanoTime();
 		avlTree.filterAll(minStars, minReviews, state, city);
 		endTime = System.nanoTime();
-		Test1duration_MultiTree = (endTime - startTime);  //divide by 1000000 to get milliseconds.
-		System.out.println("AVLTree took " + Test1duration_MultiTree + "ns to filter for test case " + testCase + ".");
+		duration = (endTime - startTime);  //divide by 1000000 to get milliseconds.
+		System.out.println("AVLTree took " + duration + "ns to filter for test case " + testCase + ".");
 
 		startTime = System.nanoTime();
-		// TODO: Li add HashMap filter code here
+		hashmap.filterAllKeySet(minStars, minReviews, state, city);
 		endTime = System.nanoTime();
-		Test1duration_MultiTree = (endTime - startTime);  //divide by 1000000 to get milliseconds.
-		System.out.println("HashMap took " + Test1duration_MultiTree + "ns to filter for test case " + testCase + ".");
+		duration = (endTime - startTime);
+		System.out.println("HashMap with key set took " + duration + "ns to filter for test case " + testCase + ".");
+
+		startTime = System.nanoTime();
+		hashmap.filterAllEntrySet(minStars, minReviews, state, city);
+		endTime = System.nanoTime();
+		duration = (endTime - startTime);
+		System.out.println("HashMap with entry set took " + duration + "ns to filter for test case " + testCase + ".");
+
+
+		hashmap.filterAllEntryIter(minStars, minReviews, state, city);
+		endTime = System.nanoTime();
+		duration = (endTime - startTime);
+		System.out.println("HashMap with entry Iteration took " + duration + "ns to filter for test case " + testCase + ".");
+
+
+		hashmap.filterAllKeyIter(minStars, minReviews, state, city);
+		endTime = System.nanoTime();
+		duration = (endTime - startTime);
+		System.out.println("HashMap with key Iteration took " + duration + "ns to filter for test case " + testCase + ".");
 
 
 //-------------------------Filter Test Case 3--------------------------------------------------------------------------
@@ -193,32 +228,50 @@ public class Cs201Application {
 		startTime = System.nanoTime();
 		// TODO: Charis add TreeMap filter code here
 		endTime = System.nanoTime();
-		Test1duration_MultiTree = (endTime - startTime);  //divide by 1000000 to get milliseconds.
-		System.out.println("Treemap took " + Test1duration_MultiTree + "ns to filter for test case " + testCase + ".");
+		duration = (endTime - startTime);  //divide by 1000000 to get milliseconds.
+		System.out.println("Treemap took " + duration + "ns to filter for test case " + testCase + ".");
 
 		startTime = System.nanoTime();
 		// TODO: Charlene add NestedTree filter code here
 		endTime = System.nanoTime();
-		Test1duration_MultiTree = (endTime - startTime);  //divide by 1000000 to get milliseconds.
-		System.out.println("NestedTree took " + Test1duration_MultiTree + "ns to filter for test case " + testCase + ".");
+		duration = (endTime - startTime);  //divide by 1000000 to get milliseconds.
+		System.out.println("NestedTree took " + duration + "ns to filter for test case " + testCase + ".");
 
 		startTime = System.nanoTime();
 		// TODO: Jasmine add MultipleTreeMap filter code here
 		endTime = System.nanoTime();
-		Test1duration_MultiTree = (endTime - startTime);  //divide by 1000000 to get milliseconds.
-		System.out.println("MultipleTreeMap took " + Test1duration_MultiTree + "ns to filter for test case " + testCase + ".");
+		duration = (endTime - startTime);  //divide by 1000000 to get milliseconds.
+		System.out.println("MultipleTreeMap took " + duration + "ns to filter for test case " + testCase + ".");
 
 		startTime = System.nanoTime();
 		avlTree.filterAll(minStars, minReviews, state, city);
 		endTime = System.nanoTime();
-		Test1duration_MultiTree = (endTime - startTime);  //divide by 1000000 to get milliseconds.
-		System.out.println("AVLTree took " + Test1duration_MultiTree + "ns to filter for test case " + testCase + ".");
+		duration = (endTime - startTime);  //divide by 1000000 to get milliseconds.
+		System.out.println("AVLTree took " + duration + "ns to filter for test case " + testCase + ".");
 
 		startTime = System.nanoTime();
-		// TODO: Li add HashMap filter code here
+		hashmap.filterAllKeySet(minStars, minReviews, state, city);
 		endTime = System.nanoTime();
-		Test1duration_MultiTree = (endTime - startTime);  //divide by 1000000 to get milliseconds.
-		System.out.println("HashMap took " + Test1duration_MultiTree + "ns to filter for test case " + testCase + ".");
+		duration = (endTime - startTime);
+		System.out.println("HashMap with key set took " + duration + "ns to filter for test case " + testCase + ".");
+
+		startTime = System.nanoTime();
+		hashmap.filterAllEntrySet(minStars, minReviews, state, city);
+		endTime = System.nanoTime();
+		duration = (endTime - startTime);
+		System.out.println("HashMap with entry set took " + duration + "ns to filter for test case " + testCase + ".");
+
+
+		hashmap.filterAllEntryIter(minStars, minReviews, state, city);
+		endTime = System.nanoTime();
+		duration = (endTime - startTime);
+		System.out.println("HashMap with entry Iteration took " + duration + "ns to filter for test case " + testCase + ".");
+
+
+		hashmap.filterAllKeyIter(minStars, minReviews, state, city);
+		endTime = System.nanoTime();
+		duration = (endTime - startTime);
+		System.out.println("HashMap with key Iteration took " + duration + "ns to filter for test case " + testCase + ".");
 //-------------------------Filter Test Case 4--------------------------------------------------------------------------
 
 		/*
@@ -245,45 +298,53 @@ public class Cs201Application {
 		startTime = System.nanoTime();
 		// TODO: Charis add TreeMap filter code here
 		endTime = System.nanoTime();
-		Test1duration_MultiTree = (endTime - startTime);  //divide by 1000000 to get milliseconds.
-		System.out.println("Treemap took " + Test1duration_MultiTree + "ns to filter for test case " + testCase + ".");
+		duration = (endTime - startTime);  //divide by 1000000 to get milliseconds.
+		System.out.println("Treemap took " + duration + "ns to filter for test case " + testCase + ".");
 
 		startTime = System.nanoTime();
 		// TODO: Charlene add NestedTree filter code here
 		endTime = System.nanoTime();
-		Test1duration_MultiTree = (endTime - startTime);  //divide by 1000000 to get milliseconds.
-		System.out.println("NestedTree took " + Test1duration_MultiTree + "ns to filter for test case " + testCase + ".");
+		duration = (endTime - startTime);  //divide by 1000000 to get milliseconds.
+		System.out.println("NestedTree took " + duration + "ns to filter for test case " + testCase + ".");
 
 		startTime = System.nanoTime();
 		// TODO: Jasmine add MultipleTreeMap filter code here
 		endTime = System.nanoTime();
-		Test1duration_MultiTree = (endTime - startTime);  //divide by 1000000 to get milliseconds.
-		System.out.println("MultipleTreeMap took " + Test1duration_MultiTree + "ns to filter for test case " + testCase + ".");
+		duration = (endTime - startTime);  //divide by 1000000 to get milliseconds.
+		System.out.println("MultipleTreeMap took " + duration + "ns to filter for test case " + testCase + ".");
 
 		startTime = System.nanoTime();
 		avlTree.filterAll(minStars, minReviews, state, city);
 		endTime = System.nanoTime();
-		Test1duration_MultiTree = (endTime - startTime);  //divide by 1000000 to get milliseconds.
-		System.out.println("AVLTree took " + Test1duration_MultiTree + "ns to filter for test case " + testCase + ".");
+		duration = (endTime - startTime);  //divide by 1000000 to get milliseconds.
+		System.out.println("AVLTree took " + duration + "ns to filter for test case " + testCase + ".");
 
 		startTime = System.nanoTime();
-		// TODO: Li add HashMap filter code here
+		hashmap.filterAllKeySet(minStars, minReviews, state, city);
 		endTime = System.nanoTime();
-		Test1duration_MultiTree = (endTime - startTime);  //divide by 1000000 to get milliseconds.
-		System.out.println("HashMap took " + Test1duration_MultiTree + "ns to filter for test case " + testCase + ".");
+		duration = (endTime - startTime);
+		System.out.println("HashMap with key set took " + duration + "ns to filter for test case " + testCase + ".");
+
+		startTime = System.nanoTime();
+		hashmap.filterAllEntrySet(minStars, minReviews, state, city);
+		endTime = System.nanoTime();
+		duration = (endTime - startTime);
+		System.out.println("HashMap with entry set took " + duration + "ns to filter for test case " + testCase + ".");
+
+
+		hashmap.filterAllEntryIter(minStars, minReviews, state, city);
+		endTime = System.nanoTime();
+		duration = (endTime - startTime);
+		System.out.println("HashMap with entry Iteration took " + duration + "ns to filter for test case " + testCase + ".");
+
+
+		hashmap.filterAllKeyIter(minStars, minReviews, state, city);
+		endTime = System.nanoTime();
+		duration = (endTime - startTime);
+		System.out.println("HashMap with key Iteration took " + duration + "ns to filter for test case " + testCase + ".");
 
 
 
-//		Hashmap hashmap= new Hashmap();
-
-//		ReadToArray fileReader = new ReadToArray();
-//		ArrayList<Business> businessList = fileReader.readFile("CS201/src/main/resources/yelp_academic_dataset_business.json");
-//		ArrayList<Business> businessList = fileReader.readFile("/Users/charzzzzy/Downloads/yelp_dataset/yelp_academic_dataset_business.json");
-
-		// for testing
-		//System.out.println("first line of expected output: ");
-		//System.out.println("[businessId: 6iYb2HFDywm3zjuRg0shjw, name: Oskar Blues Taproom, city: Boulder, state: CO, latitude: 40.0175444, longitude: -105.2833481, stars: 4.0, review count: 86]");
-		//System.out.println(businessList);
 
 		/*
 		Test case 1:
@@ -301,30 +362,30 @@ public class Cs201Application {
 		//multitree (Jasmine)
 //		long startTime = System.nanoTime();
 //		Filter filter = new Filter();
-//		List<Business> fitsCriteriaList = filter.fitsAllList(requiredStars, requiredReviewCount, state, city);
+//		List<Business> fitsCriteriaList = filter.fitsAllList(minStars, minReviews, state, city);
 //		long endTime = System.nanoTime();
-//		long Test1duration_MultiTree = (endTime - startTime);  //divide by 1000000 to get milliseconds.
+//		long duration = (endTime - startTime);  //divide by 1000000 to get milliseconds.
 //
 //		System.out.println(fitsCriteriaList);
-//		System.out.println("This method took " + Test1duration_MultiTree + "ns to run.");
+//		System.out.println("This method took " + duration + "ns to run.");
 //
 //		System.out.println("Test 3: HashMap Version - key set");
-//		fitsCriteriaList = hashmap.filterAllKeySet(requiredStars, requiredReviewCount, state, city);
+//		fitsCriteriaList = hashmap.filterAllKeySet(minStars, minReviews, state, city);
 //		endTime = System.nanoTime();
 //		System.out.println("Duration taken "+ (endTime-startTime));
 //
 //		System.out.println("Test 3: HashMap Version - entry set");
-//		fitsCriteriaList = hashmap.filterAllEntrySet(requiredStars, requiredReviewCount, state, city);
+//		fitsCriteriaList = hashmap.filterAllEntrySet(minStars, minReviews, state, city);
 //		endTime = System.nanoTime();
 //		System.out.println("Duration taken "+ (endTime-startTime));
 //
 //		System.out.println("Test 3: HashMap Version - entry iter");
-//		fitsCriteriaList = hashmap.filterAllEntryIter(requiredStars, requiredReviewCount, state, city);
+//		fitsCriteriaList = hashmap.filterAllEntryIter(minStars, minReviews, state, city);
 //		endTime = System.nanoTime();
 //		System.out.println("Duration taken "+ (endTime-startTime));
 //
 //		System.out.println("Test 3: HashMap Version - key iter");
-//		fitsCriteriaList = hashmap.filterAllKeyIter(requiredStars, requiredReviewCount, state, city);
+//		fitsCriteriaList = hashmap.filterAllKeyIter(minStars, minReviews, state, city);
 //		endTime = System.nanoTime();
 //		System.out.println("Duration taken "+ (endTime-startTime));
 
@@ -388,40 +449,6 @@ public class Cs201Application {
 		// 	System.out.println("Test1_AVLTree: IOException is caught");
 		// }
 
-
-
-//		 // Hashmap (Li)
-//		 startTime = System.nanoTime();
-//		 // call ur method
-//		 fitsCriteriaList = hashmap.filterAllKeySet(requiredStars, requiredReviewCount, state, city);
-//		 endTime = System.nanoTime();
-//		 long Test1duration_Hashmap = (endTime - startTime);  //divide by 1000000 to get milliseconds.
-//
-//		 System.out.println(); // list
-//		 System.out.println("This method took " + Test1duration_Hashmap + "ns to run.");
-
-		// try {   
-		// 	//Saving of object in a file
-		// 	String path = "/Users/jasminequek/Desktop/CS201 Data/project/Test1_Hashmap";
-		// 	FileOutputStream file = new FileOutputStream(path);
-		// 	ObjectOutputStream out = new ObjectOutputStream(file);
-			
-		// 	// Method for serialization of object
-		// 	out.writeObject(filter); // object to serialise
-			
-		// 	out.close();
-		// 	file.close();
-
-		// 	long Test1Size_Hashmap = Files.size(Paths.get(path));
-			
-		// 	System.out.println("Test1_Hashmap: Object has been serialized");
-		// 	System.out.println("Size of file: " + Test1Size_Hashmap + "bytes");
-		// } catch(IOException ex) {
-		// 	System.out.println("Test1_Hashmap: IOException is caught");
-		// }
-
-
-
 // --------------------TEST CASE 2----------------------------
 		/*
 		Test case 2:
@@ -438,7 +465,7 @@ public class Cs201Application {
 //
 //		// multitree (Jasmine)
 //		startTime = System.nanoTime();
-//		fitsCriteriaList = filter.fitsAllList(requiredStars, requiredReviewCount, state, city);
+//		fitsCriteriaList = filter.fitsAllList(minStars, minReviews, state, city);
 //		endTime = System.nanoTime();
 //		long duration = (endTime - startTime)/1000000;
 //
@@ -462,7 +489,7 @@ public class Cs201Application {
 
 		// multitree (Jasmine)
 //		startTime = System.nanoTime();
-//		fitsCriteriaList = filter.fitsAllList(requiredStars, requiredReviewCount, state, city);
+//		fitsCriteriaList = filter.fitsAllList(minStars, minReviews, state, city);
 //		endTime = System.nanoTime();
 //		duration = (endTime - startTime)/1000000;
 //
@@ -519,21 +546,6 @@ public class Cs201Application {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	}
 
 	public static void fileSizeCalculator(Object obj){
@@ -562,3 +574,4 @@ public class Cs201Application {
 
 
 }
+
