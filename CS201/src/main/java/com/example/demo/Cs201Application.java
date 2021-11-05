@@ -1,7 +1,7 @@
 package com.example.demo;
 
 import com.example.demo.avltree.AVLTree;
-import com.example.demo.NestedTree.*;
+import com.example.demo.nestedtree.*;
 import com.example.demo.multitrees.MultiTreemap;
 import com.example.demo.multitrees.MultiTreemap2;
 import com.example.demo.hashmap.Hashmap;
@@ -198,6 +198,8 @@ public class Cs201Application {
 
 		startTime = System.nanoTime();
 		// TODO: Charis add TreeMap filter code here
+        l = Treemapx.searchAll(4.0f, 100, "OR", null);
+
 		endTime = System.nanoTime();
 		duration = (endTime - startTime);  //divide by 1000000 to get milliseconds.
 		System.out.println("Treemap took " + duration + "ns to filter for test case " + testCase + ".");
@@ -273,6 +275,7 @@ public class Cs201Application {
 
 		startTime = System.nanoTime();
 		// TODO: Charis add TreeMap filter code here
+        l = Treemapx.searchAll(0f, 100, "OR", null);
 		endTime = System.nanoTime();
 		duration = (endTime - startTime);  //divide by 1000000 to get milliseconds.
 		System.out.println("Treemap took " + duration + "ns to filter for test case " + testCase + ".");
@@ -344,6 +347,7 @@ public class Cs201Application {
 
 		startTime = System.nanoTime();
 		// TODO: Charis add TreeMap filter code here
+        l = Treemapx.searchAll(1.5f, 0, null, null);
 		endTime = System.nanoTime();
 		duration = (endTime - startTime);  //divide by 1000000 to get milliseconds.
 		System.out.println("Treemap took " + duration + "ns to filter for test case " + testCase + ".");

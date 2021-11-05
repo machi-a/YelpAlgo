@@ -17,7 +17,7 @@ public class Treemapx implements Serializable {
 
     private static Treenodex root;
     private static final long serialVersionUID = 1L;
-   
+
     public static Treenodex getRoot() {
         return root;
     }
