@@ -85,11 +85,11 @@ public class Business implements Serializable {
         return String.format("\n[businessId: " +  businessId + ", name: " + name + ", city: " + city + ", state: " + state +", latitude: " + latitude + ", longitude: " + longitude + ", stars: " + stars + ", review count: " + reviewCount +"]");
     }
 
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder(17, 31).
-                append(businessId).
-                append(name).
-                toHashCode();
-    }
+//    @Override
+//    public int hashCode() {
+//        return new HashCodeBuilder(17, 31).
+//                append(businessId).
+//                append(name).
+//                toHashCode();
+//    }
 }
