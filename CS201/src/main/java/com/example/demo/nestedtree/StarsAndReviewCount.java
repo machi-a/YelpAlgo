@@ -1,5 +1,6 @@
-package com.example.demo.nestedtree;
+package com.example.demo.nestedTree;
 
+import com.example.demo.reader.ReadToArray;
 import com.google.gson.Gson;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import com.example.demo.business.*;
@@ -12,20 +13,21 @@ import java.util.HashMap;
 @SpringBootApplication
 public class StarsAndReviewCount{
 
-	private static MainTreeNode root;
+	public static MainTreeNode root;
 	private static ArrayList<Business> toReturn= new ArrayList<>();
 
 
 
+
 	public static void main(String[] args) {
-		ArrayList<Business> returned = readFile("/Users/charzzzzy/Downloads/yelp_dataset/yelp_academic_dataset_business.json");
+		String filepath="/Users/charzzzzy/Downloads/yelp_dataset/yelp_academic_dataset_business.json";
 //
 //		for (Business b: returned){
 //			System.out.println(b.getName());
 //
 //		}
 		long startTimeCreate = System.nanoTime();
-		LoadNestedTree();
+		LoadNestedTree(filepath);
 
 		long endTimeCreate = System.nanoTime();
 		long timeCreate= endTimeCreate- startTimeCreate;
@@ -77,9 +79,9 @@ public class StarsAndReviewCount{
 
 	}
 
-	public static void LoadNestedTree(){
+	public static void LoadNestedTree(String filepath){
 
-		ArrayList<Business> returned = readFile("/Users/charzzzzy/Downloads/yelp_dataset/yelp_academic_dataset_business.json");
+		ArrayList<Business> returned = readFile(filepath);
 
 //		ArrayList<Business> returned= readFile("/Users/charzzzzy/Downloads/yelp_dataset/yelp_academic_dataset_business.json");
 		HashMap<Double, ArrayList<Business> > grouped=groupRatings(returned);
@@ -168,7 +170,7 @@ public class StarsAndReviewCount{
 		return searchByRating(root.getLeft(),target);
 	}
 
-	private static void searchByRatingAndReviews(MainTreeNode root, double rating, int reviewCounts) throws BusinessNotFoundException {
+	public static void searchByRatingAndReviews(MainTreeNode root, double rating, int reviewCounts) throws BusinessNotFoundException {
 		MainTreeNode found= searchByRating(root, rating);
 		if(found==null){
 			throw new BusinessNotFoundException();

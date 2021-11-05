@@ -1,4 +1,4 @@
-package com.example.demo.nestedtree;
+package com.example.demo.nestedTree;
 
 public class MainTreeNode {
     private String value;

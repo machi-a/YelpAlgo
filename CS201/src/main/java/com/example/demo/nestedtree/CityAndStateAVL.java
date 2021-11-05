@@ -1,4 +1,4 @@
-package com.example.demo.nestedtree;
+package com.example.demo.nestedTree;
 
 import com.example.demo.business.Business;
 import com.google.gson.Gson;
@@ -411,6 +411,4 @@ public class CityAndStateAVL {
         }
     }
 
-
-
-    }
+}

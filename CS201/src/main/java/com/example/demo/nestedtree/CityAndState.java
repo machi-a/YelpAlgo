@@ -1,6 +1,9 @@
-package com.example.demo.nestedtree;
+package com.example.demo.nestedTree;
 
+//import com.example.demo.nestedTree.MainTreeNode;
+//import com.example.demo.nestedTree.subTreeNode;
 import com.example.demo.business.Business;
+import com.example.demo.reader.ReadToArray;
 import com.google.gson.Gson;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -20,10 +23,11 @@ public class CityAndState  {
 
 
 
-    public static void LoadNestedTree(ArrayList<Business> returned){
+    public static void LoadNestedTree(String filepath){
 
+        ReadToArray fileReader = new ReadToArray();
 
-//		ArrayList<Business> returned= readFile("/Users/charzzzzy/Downloads/yelp_dataset/yelp_academic_dataset_business.json");
+		ArrayList<Business> returned= fileReader.readFile(filepath);
         HashMap<String, ArrayList<Business> > grouped=groupStates(returned);
 
         linkSubTree(groupStates(returned));
@@ -31,27 +35,27 @@ public class CityAndState  {
 
 
     }
-    public static ArrayList<Business> readFile(String filepath){
-        ArrayList<Business> businessList = new ArrayList<Business>();
-        try {
-            FileReader reader = new FileReader(filepath);
-
-            // System.out.println("FILE");
-            BufferedReader bufferedReader = new BufferedReader(reader);
-
-            String currentLine;
-            while ((currentLine = bufferedReader.readLine()) != null) {
-                Gson gson = new Gson();
-
-                Business business = gson.fromJson(currentLine.toString(), Business.class);
-                businessList.add(business);
-            }
-        } catch (IOException e) {
-            System.out.println("No File Found");
-            e.printStackTrace();
-        }
-        return businessList;
-    }
+//    public static ArrayList<Business> readFile(String filepath){
+//        ArrayList<Business> businessList = new ArrayList<Business>();
+//        try {
+//            FileReader reader = new FileReader(filepath);
+//
+//            // System.out.println("FILE");
+//            BufferedReader bufferedReader = new BufferedReader(reader);
+//
+//            String currentLine;
+//            while ((currentLine = bufferedReader.readLine()) != null) {
+//                Gson gson = new Gson();
+//
+//                Business business = gson.fromJson(currentLine.toString(), Business.class);
+//                businessList.add(business);
+//            }
+//        } catch (IOException e) {
+//            System.out.println("No File Found");
+//            e.printStackTrace();
+//        }
+//        return businessList;
+//    }
 
 
 

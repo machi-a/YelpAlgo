@@ -1,7 +1,8 @@
-package com.example.demo.nestedtree;
+package com.example.demo.nestedTree;
 
 
 import com.example.demo.business.Business;
+import com.example.demo.reader.ReadToArray;
 import com.google.gson.Gson;
 
 import java.io.BufferedReader;
@@ -14,27 +15,27 @@ public class HybridTree {
 
     private static ArrayList<Business> toReturn= new ArrayList<>();
 
+    public static HashMap< String , SubTreeNode> hybridStructure;
 
-
-    public static HashMap< String , SubTreeNode>  LoadHybridStructure( ArrayList<Business> returned ){
-
-//		ArrayList<Business> returned= readFile("/Users/charzzzzy/Downloads/yelp_dataset/yelp_academic_dataset_business.json");
+    public static HashMap< String , SubTreeNode>  LoadHybridStructure( String filepath){
+        ReadToArray fileReader = new ReadToArray();
+		ArrayList<Business> returned= fileReader.readFile(filepath);
         HashMap<String,ArrayList<Business>> stateGrouped= groupStates(returned);
 
-        HashMap< String , SubTreeNode> toReturn= formHybridStructure(stateGrouped);
+        hybridStructure = formHybridStructure(stateGrouped);
 
-        return toReturn;
+        return hybridStructure;
 
 
     }
 
     public static  HashMap< String , SubTreeNode> formHybridStructure( HashMap<String,ArrayList<Business>> map){
-        HashMap< String , SubTreeNode> toReturn = new HashMap<>();
+        HashMap< String , SubTreeNode> toReturn2 = new HashMap<>();
         for(String state: map.keySet()){
 
-            toReturn.put(state, createSubTree(map.get(state)));
+            toReturn2.put(state, createSubTree(map.get(state)));
         }
-        return toReturn;
+        return toReturn2;
     }
 
 
@@ -166,21 +167,21 @@ public class HybridTree {
 
 //		if(root.getBusiness().getName().compareTo(store.getBusiness().getName())>0){
             root.setLeft(insertSubTree(root.getLeft(), toInsert));
-            if (getHeight(root.getLeft()) - getHeight(root.getRight()) == 2)
-                if (toInsert.getBusiness().getCity().compareTo(root.getLeft().getBusiness().getCity()) < 0)
-                    root = rotateMainTreeWithLeftChild(root);
-                else
-                    root = doubleWithLeftChild(root);
+//            if (getHeight(root.getLeft()) - getHeight(root.getRight()) == 2)
+//                if (toInsert.getBusiness().getCity().compareTo(root.getLeft().getBusiness().getCity()) < 0)
+//                    root = rotateMainTreeWithLeftChild(root);
+//                else
+//                    root = doubleWithLeftChild(root);
         }
 //		else if(root.getBusiness().getName().compareTo(store.getBusiness().getName())<0){
         else if (toInsert.getBusiness().getCity().compareTo(root.getBusiness().getCity())>0){
 
             root.setRight(insertSubTree(root.getRight(), toInsert));
-            if (getHeight(root.getRight()) - getHeight(root.getLeft()) == 2)
-                if (toInsert.getBusiness().getCity().compareTo(root.getRight().getBusiness().getCity()) > 0)
-                    root = rotateMainTreeWithRightChild(root);
-                else
-                    root = doubleWithRightChild(root);
+//            if (getHeight(root.getRight()) - getHeight(root.getLeft()) == 2)
+//                if (toInsert.getBusiness().getCity().compareTo(root.getRight().getBusiness().getCity()) > 0)
+//                    root = rotateMainTreeWithRightChild(root);
+//                else
+//                    root = doubleWithRightChild(root);
         }
         return root;
     }
