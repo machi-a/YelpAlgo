@@ -20,15 +20,16 @@ public class Cs201Application {
 	static long endTime = 0;
 	public static void main(String[] args) {
 //		SpringApplication.run(Cs201Application.class, args);
-		Hashmap hashmap= new Hashmap();
+		Hashmap hashmap = new Hashmap();
 
-		ReadToArray fileReader = new ReadToArray();
-		ArrayList<Business> businessList = fileReader.readFile("CS201/src/main/resources/yelp_academic_dataset_business.json");
+		// ReadToArray fileReader = new ReadToArray();
+		// ArrayList<Business> businessList = fileReader.readFile("/Users/jasminequek/Desktop/CS201 Data/project/code/actual/yelp_academic_dataset_business.json");
+		// // "CS201/src/main/resources/yelp_academic_dataset_business.json"
 
-		// for testing
-		System.out.println("first line of expected output: ");
-		System.out.println("[businessId: 6iYb2HFDywm3zjuRg0shjw, name: Oskar Blues Taproom, city: Boulder, state: CO, latitude: 40.0175444, longitude: -105.2833481, stars: 4.0, review count: 86]");
-		System.out.println(businessList);
+		// // for testing
+		// System.out.println("first line of expected output: ");
+		// System.out.println("[businessId: 6iYb2HFDywm3zjuRg0shjw, name: Oskar Blues Taproom, city: Boulder, state: CO, latitude: 40.0175444, longitude: -105.2833481, stars: 4.0, review count: 86]");
+		// System.out.println(businessList);
 
 		/*
 		Test case 1:
@@ -45,15 +46,18 @@ public class Cs201Application {
 
 		// multitree (Jasmine)
 		long startTime = System.nanoTime();
+		long beforeUsedMem=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
 		Filter filter = new Filter();
 		List<Business> fitsCriteriaList = filter.fitsAllList(requiredStars, requiredReviewCount, state, city);
 		long endTime = System.nanoTime();
+		long afterUsedMem=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
 		long Test1duration_MultiTree = (endTime - startTime);  //divide by 1000000 to get milliseconds.
+		Long actualMemUsed=afterUsedMem-beforeUsedMem;
 
 		System.out.println(fitsCriteriaList);
 		System.out.println("This method took " + Test1duration_MultiTree + "ns to run.");
 
-		try {   
+		try {
 			//Saving of object in a file
 			String path = "/Users/jasminequek/Desktop/CS201 Data/project/Test1_MultiTree";
 			FileOutputStream file = new FileOutputStream(path);
@@ -72,6 +76,8 @@ public class Cs201Application {
 		} catch(IOException ex) {
 			System.out.println("Test1_MultiTree: IOException is caught");
 		}
+
+		System.out.println("Calculated Size of file: " + actualMemUsed.byteValue());
 
 
 
@@ -166,6 +172,26 @@ public class Cs201Application {
 		// 	System.out.println("Test1_Hashmap: IOException is caught");
 		// }
 
+		// System.out.println("Test 3: HashMap Version - key set");
+		// fitsCriteriaList = hashmap.filterAllKeySet(requiredStars, requiredReviewCount, state, city);
+		// endTime = System.nanoTime();
+		// System.out.println("Duration taken "+ (endTime-startTime));
+
+		// System.out.println("Test 3: HashMap Version - entry set");
+		// fitsCriteriaList = hashmap.filterAllEntrySet(requiredStars, requiredReviewCount, state, city);
+		// endTime = System.nanoTime();
+		// System.out.println("Duration taken "+ (endTime-startTime));
+
+		// System.out.println("Test 3: HashMap Version - entry iter");
+		// fitsCriteriaList = hashmap.filterAllEntryIter(requiredStars, requiredReviewCount, state, city);
+		// endTime = System.nanoTime();
+		// System.out.println("Duration taken "+ (endTime-startTime));
+
+		// System.out.println("Test 3: HashMap Version - key iter");
+		// fitsCriteriaList = hashmap.filterAllKeyIter(requiredStars, requiredReviewCount, state, city);
+		// endTime = System.nanoTime();
+		// Syste
+
 
 
 // --------------------TEST CASE 2----------------------------
@@ -186,10 +212,10 @@ public class Cs201Application {
 		startTime = System.nanoTime();
 		fitsCriteriaList = filter.fitsAllList(requiredStars, requiredReviewCount, state, city);
 		endTime = System.nanoTime();
-		long duration = (endTime - startTime)/1000000;
+		long duration = (endTime - startTime);
 
 		System.out.println(fitsCriteriaList);
-		System.out.println("This method took " + duration + "ms to run.");
+		System.out.println("This method took " + duration + "ns to run.");
 
 		/*
 		Test case 3:
@@ -210,10 +236,10 @@ public class Cs201Application {
 		startTime = System.nanoTime();
 		fitsCriteriaList = filter.fitsAllList(requiredStars, requiredReviewCount, state, city);
 		endTime = System.nanoTime();
-		duration = (endTime - startTime)/1000000;
+		duration = (endTime - startTime);
 
 		System.out.println(fitsCriteriaList);
-		System.out.println("This method took " + duration + "ms to run.");
+		System.out.println("This method took " + duration + "ns to run.");
 
 		/*
 		Test case 4:
@@ -232,15 +258,16 @@ public class Cs201Application {
 		startTime = System.nanoTime();
 		fitsCriteriaList = filter.fitsAllList(requiredStars, requiredReviewCount, state, city);
 		endTime = System.nanoTime();
-		duration = (endTime - startTime)/1000000;
+		duration = (endTime - startTime);
 
 		System.out.println(fitsCriteriaList);
-		System.out.println("This method took " + duration + "ms to run.");
+		System.out.println("This method took " + duration + "ns to run.");
 
 		try
 		{   
 			//Saving of object in a file
-			FileOutputStream file = new FileOutputStream("/Users/jasminequek/Desktop/CS201 Data/project/Test2");
+			String path = "/Users/jasminequek/Desktop/CS201 Data/project/Test2";
+			FileOutputStream file = new FileOutputStream(path);
 			ObjectOutputStream out = new ObjectOutputStream(file);
 			
 			// Method for serialization of object
@@ -249,40 +276,44 @@ public class Cs201Application {
 			out.close();
 			file.close();
 			
-			System.out.println("Object has been serialized");
-
+			long Test4Size_MultiTree = Files.size(Paths.get(path));
+			
+			System.out.println("Test1_MultiTree: Object has been serialized");
+			System.out.println("Size of file: " + Test4Size_MultiTree + "bytes");
 		}
 		catch(IOException ex)
 		{
 			System.out.println("IOException is caught");
 			ex.printStackTrace();
 		}
-		endTime = System.nanoTime();
-		System.out.println("Duration taken "+ (endTime-startTime));
-		startTime = System.nanoTime();
 
-		System.out.println("Test 3: HashMap Version - key set");
-		fitsCriteriaList = hashmap.filterAllKeySet(requiredStars, requiredReviewCount, state, city);
-		System.out.println(fitsCriteriaList);
-		endTime = System.nanoTime();
-		System.out.println("Duration taken "+ (endTime-startTime));
+		// li's test cases
+		// endTime = System.nanoTime();
+		// System.out.println("Duration taken "+ (endTime-startTime));
+		// startTime = System.nanoTime();
 
-		System.out.println("Test 3: HashMap Version - entry set");
-		fitsCriteriaList = hashmap.filterAllEntrySet(requiredStars, requiredReviewCount, state, city);
-		System.out.println(fitsCriteriaList);
-		endTime = System.nanoTime();
-		System.out.println("Duration taken "+ (endTime-startTime));
+		// System.out.println("Test 3: HashMap Version - key set");
+		// fitsCriteriaList = hashmap.filterAllKeySet(requiredStars, requiredReviewCount, state, city);
+		// System.out.println(fitsCriteriaList);
+		// endTime = System.nanoTime();
+		// System.out.println("Duration taken "+ (endTime-startTime));
 
-		System.out.println("Test 3: HashMap Version - entry iter");
-		fitsCriteriaList = hashmap.filterAllEntryIter(requiredStars, requiredReviewCount, state, city);
-		System.out.println(fitsCriteriaList);
-		endTime = System.nanoTime();
-		System.out.println("Duration taken "+ (endTime-startTime));
+		// System.out.println("Test 3: HashMap Version - entry set");
+		// fitsCriteriaList = hashmap.filterAllEntrySet(requiredStars, requiredReviewCount, state, city);
+		// System.out.println(fitsCriteriaList);
+		// endTime = System.nanoTime();
+		// System.out.println("Duration taken "+ (endTime-startTime));
 
-		System.out.println("Test 3: HashMap Version - key iter");
-		fitsCriteriaList = hashmap.filterAllKeyIter(requiredStars, requiredReviewCount, state, city);
-		System.out.println(fitsCriteriaList);
-		endTime = System.nanoTime();
-		System.out.println("Duration taken "+ (endTime-startTime));
+		// // System.out.println("Test 3: HashMap Version - entry iter");
+		// // fitsCriteriaList = hashmap.filterAllEntryIter(requiredStars, requiredReviewCount, state, city);
+		// // System.out.println(fitsCriteriaList);
+		// // endTime = System.nanoTime();
+		// // System.out.println("Duration taken "+ (endTime-startTime));
+
+		// // System.out.println("Test 3: HashMap Version - key iter");
+		// // fitsCriteriaList = hashmap.filterAllKeyIter(requiredStars, requiredReviewCount, state, city);
+		// // System.out.println(fitsCriteriaList);
+		// // endTime = System.nanoTime();
+		// // System.out.println("Duration taken "+ (endTime-startTime));
 	}
 }
