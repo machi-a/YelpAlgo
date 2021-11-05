@@ -87,7 +87,7 @@ public class Business implements Serializable {
 
     @Override
     public int hashCode() {
-        return new HashCodeBuilder(17, 97).
+        return new HashCodeBuilder(17, 31).
                 append(businessId).
                 append(name).
                 toHashCode();
