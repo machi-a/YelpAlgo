@@ -3,11 +3,20 @@ package com.example.demo.treemap;
 import com.example.demo.business.Business;
 import com.example.demo.reader.ReadToArray;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
 import java.util.*;
 
-public class Treemapx {
+public class Treemapx implements Serializable {
 
     private static Treenodex root;
+    private static final long serialVersionUID = 1L;
     public Treenodex getRoot() {
         return root;
     }
@@ -30,6 +39,44 @@ public class Treemapx {
         // printResult(tm.searchReviewCount(80)); // test using count = 80
         // printResult(tm.searchState("OR")); // test using state = OR
         // printResult(tm.searchCity("Austin")); // test using city = austin
+
+        // tests (tests)
+		long startTime = System.nanoTime();
+        ArrayList<Business> l = map.searchAll(4.0f, 100, "OR", "Portland");
+		long endTime = System.nanoTime();
+        long Test1duration_Treemap = (endTime - startTime);  //divide by 1000000 to get milliseconds.
+		System.out.println("This method took " + Test1duration_Treemap + "ns to run.");
+
+        startTime = System.nanoTime();
+        l = map.searchAll(4.0f, 20, "CO", null);
+		endTime = System.nanoTime();
+        Test1duration_Treemap = (endTime - startTime);
+		System.out.println("This method took " + Test1duration_Treemap + "ns to run.");
+
+        startTime = System.nanoTime();
+        l = map.searchAll(null, 120, null, null);
+		endTime = System.nanoTime();
+        Test1duration_Treemap = (endTime - startTime);
+		System.out.println("This method took " + Test1duration_Treemap + "ns to run.");
+
+        try {
+			//Saving of object in a file
+			String path = "/Users/charischin/Documents/Y2S1/CS201/project/file2";
+			FileOutputStream file = new FileOutputStream(path);
+			ObjectOutputStream out = new ObjectOutputStream(file);
+			
+			// Method for serialization of object
+			out.writeObject(map); // object to serialise
+			out.close();
+			file.close();
+			long longer = Files.size(Paths.get(path));
+			
+			System.out.println("Object has been serialized");
+			System.out.println("Size of file: " + longer + "bytes");
+		} catch (IOException e) {
+			System.out.println("Whoops");
+            e.printStackTrace();
+		}
     }
 
     public Treemapx fill() {

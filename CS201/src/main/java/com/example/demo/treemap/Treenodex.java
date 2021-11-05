@@ -1,8 +1,11 @@
 package com.example.demo.treemap;
 
+import java.io.Serializable;
+
 import com.example.demo.business.Business;
 
-public class Treenodex {
+public class Treenodex implements Serializable {
+    private static final long serialVersionUID = 1L;
     private Business business;
     private Treenodex left;
     private Treenodex right;
