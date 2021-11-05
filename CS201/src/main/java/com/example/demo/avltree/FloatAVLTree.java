@@ -4,9 +4,10 @@ import com.example.demo.avltree.FloatNode;
 import com.example.demo.business.Business;
 
 import java.util.ArrayList;
+import java.io.Serializable;
 
-public class FloatAVLTree {
-
+public class FloatAVLTree  implements Serializable {
+    private static final long serialVersionUID = 1L;
     private FloatNode rootNode;
 
     //Constructor to set null value to the rootNode

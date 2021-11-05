@@ -1,13 +1,10 @@
 package com.example.demo.multitrees;
 
 import com.example.demo.business.Business;
-import com.example.demo.multitrees.FeatureTree;
 
 import java.io.Serializable;
-import java.rmi.server.UID;
 import java.util.ArrayList;
 import java.util.Map;
-import java.util.TreeMap;
 import java.util.Map.Entry;
 
 public class MultiTreemap implements Serializable {
@@ -31,13 +28,6 @@ public class MultiTreemap implements Serializable {
         }
         return fitsStarsList;
     }
-
-    // public ArrayList<Business> fitsStarsListSubMapImplementation(Float requiredStars) {
-    //     TreeMap<Float, ArrayList<Business>> starsMap = trees.createStarsTreeMap();
-    //     Map<Float, ArrayList<Business>> fitsStarsMap = starsMap.subMap(requiredStars, true, 5.0f, true);
-    //     List<Business> fitsStarsList = new ArrayList<Business>(fitsStarsMap.values());
-    //     return fitsStarsList;
-    // }
 
     public ArrayList<Business> fitsReviewCountList(int requiredReviewCount) {
         ArrayList<Business> fitsReviewCountList = new ArrayList<Business>();
@@ -96,22 +86,6 @@ public class MultiTreemap implements Serializable {
             }
         }
         return fitsStarsAndReviewCountList;
-    }
-
-    // err where to call 
-    public Boolean validifyRequirements(Float requiredStars, int requiredReviewCount) { // String requiredState, String requiredCity: how to verify
-        if (requiredStars < 0 || requiredStars > 5.0) { // exceed range of 0~5.0 
-            return false;
-        } else if (requiredStars % 0.5 != 0) { // not in denominations of 0.5
-            return false;
-        }
-
-        if (requiredReviewCount < 0) { // negative
-            return false;
-        } else if (requiredReviewCount % 1 != 0) { // not an integer, shouldnt come here i think
-            return false;
-        }
-        return true;
     }
 
     public ArrayList<Business> filterAll(Float requiredStars, int requiredReviewCount, String requiredState, String requiredCity) {
@@ -191,27 +165,4 @@ public class MultiTreemap implements Serializable {
         }
         return fitsAllList;
     }
-
-
-
-    // public ArrayList<Business> fitsCriteriaList(String state, String city, Float stars, int reviewCount) {
-    //     ArrayList<String> fitsStars;
-
-    //     ArrayList<String> idList = new ArrayList<String>();
-    //     for (Entry<Float, ArrayList<String>> entry : starsMap.entrySet()) {
-    //         if (entry.getKey() > 4.0) {
-    //             for (String id: entry.getValue()) {
-    //                 idList.add(id);
-    //             }
-    //         }
-    //     }
-
-    //     System.out.println(idList);
-
-    //     for (Business b: businessList) {
-    //         if (idList.contains(b.getBusinessId())) {
-    //             System.out.println(b);
-    //         }
-    //     }
-    // }
 }

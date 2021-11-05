@@ -1,8 +1,10 @@
 package com.example.demo.avltree;
 import com.example.demo.business.Business;
+import java.io.Serializable;
 
-class BusinessNode
+class BusinessNode implements Serializable 
 {
+    private static final long serialVersionUID = 1L;
     Business element;
     int h;  //for height
     BusinessNode leftChild;

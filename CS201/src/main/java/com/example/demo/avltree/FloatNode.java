@@ -3,9 +3,10 @@ package com.example.demo.avltree;
 import com.example.demo.business.Business;
 
 import java.util.ArrayList;
+import java.io.Serializable;
 
-public class FloatNode {
-
+public class FloatNode  implements Serializable {
+    private static final long serialVersionUID = 1L;
     float element;
     ArrayList<Business> bizList;
     int h;  //for height

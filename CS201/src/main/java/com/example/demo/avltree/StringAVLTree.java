@@ -3,9 +3,10 @@ package com.example.demo.avltree;
 import com.example.demo.business.Business;
 
 import java.util.ArrayList;
+import java.io.Serializable;
 
-public class StringAVLTree {
-
+public class StringAVLTree  implements Serializable {
+    private static final long serialVersionUID = 1L;
     StringNode rootNode;
 
     //Constructor to set null value to the rootNode

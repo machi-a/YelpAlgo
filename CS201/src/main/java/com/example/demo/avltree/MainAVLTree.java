@@ -1,9 +1,10 @@
 package com.example.demo.avltree;
 import  com.example.demo.business.Business;
 import com.example.demo.avltree.BusinessNode;
+import java.io.Serializable;
 
-class MainAVLTree
-{
+class MainAVLTree implements Serializable 
+{   private static final long serialVersionUID = 1L;
     private BusinessNode rootNode;
 
     //Constructor to set null value to the rootNode

@@ -7,9 +7,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.TreeMap;
+import java.io.Serializable;
 
-class AVLStorage {
-
+class AVLStorage implements Serializable  {
+    private static final long serialVersionUID = 1L;
     public MainAVLTree createMainAVLTree(ArrayList<Business> listOfBiz){
 
         MainAVLTree returnAVLTree = new MainAVLTree();

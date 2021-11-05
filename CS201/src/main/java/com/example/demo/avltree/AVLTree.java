@@ -5,9 +5,11 @@ import com.example.demo.reader.ReadToArray;
 import com.sun.tools.javac.Main;
 
 import java.io.FileReader;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class AVLTree {
+public class AVLTree implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     MainAVLTree mainTree = null;
     FloatAVLTree starsTree = null;

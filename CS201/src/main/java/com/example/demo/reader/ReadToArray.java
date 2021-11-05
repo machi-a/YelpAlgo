@@ -6,11 +6,12 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.io.IOException;
-
+import java.io.Serializable;
 import com.google.gson.Gson;
 
-public class ReadToArray {
-    
+public class ReadToArray implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
     public ArrayList<Business> readFile(String filepath){
 		ArrayList<Business> businessList = new ArrayList<>();
 		try {
