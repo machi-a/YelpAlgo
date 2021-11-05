@@ -1,11 +1,13 @@
 package com.example.demo;
 
 import com.example.demo.avltree.AVLTree;
-import com.example.demo.nestedtree.*;
+import com.example.demo.NestedTree.*;
 import com.example.demo.multitrees.MultiTreemap;
 import com.example.demo.multitrees.MultiTreemap2;
 import com.example.demo.hashmap.Hashmap;
 import com.example.demo.treemap.Treemapx;
+import java.util.*;
+import com.example.demo.business.*;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -14,6 +16,7 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+
 
 @SpringBootApplication
 public class Cs201Application {
@@ -31,6 +34,7 @@ public class Cs201Application {
 
 		long startTime = System.nanoTime();
 		// TODO: Charis add TreeMap creation code here
+		Treemapx treemapx= new Treemapx(filepath);
 		long endTime = System.nanoTime();
 		long duration = (endTime - startTime);  //divide by 1000000 to get milliseconds.
 		System.out.println("The Treemap took " + duration + "ns to complete storing.");
@@ -97,6 +101,7 @@ public class Cs201Application {
 
 		startTime = System.nanoTime();
 		// TODO: Charis add TreeMap filter code here
+        ArrayList<Business> l = Treemapx.searchAll(4.0f, 100, "OR", "Portland");
 		endTime = System.nanoTime();
 		duration = (endTime - startTime);  //divide by 1000000 to get milliseconds.
 		System.out.println("Treemap took " + duration + "ns to filter for test case " + testCase + ".");
