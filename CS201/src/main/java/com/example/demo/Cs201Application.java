@@ -223,8 +223,54 @@ public class Cs201Application {
 		duration = (endTime - startTime);
 		System.out.println("ProbeHashMap with key Iteration took " + duration + "ns to filter for test case " + testCase + ".");
 
+//-------------------------Filter Test Case 5--------------------------------------------------------------------------
 
+	/*
+	Test case 4:
+	stars - 4.0 and above
+	no. of reviews: 100 and above
+	state - OR
+	city - Portland
+	*/
+		testCase++;
+		minStars = 0.0f;
+		minReviews = 0;
+		state = "WA";
+		city = "Vancouver";
+
+		System.out.println("\n---------Test Case " + testCase + "---------");
+		System.out.println("Features: 1");
+		System.out.println("minStars: " + minStars);
+		System.out.println("minReviews:  " + minReviews);
+		System.out.println("state: " + state);
+		System.out.println("city: " + city + "\n");
+
+
+		startTime = System.nanoTime();
+		hashmap.filterAllKeySet(minStars, minReviews, state, city);
+		endTime = System.nanoTime();
+		duration = (endTime - startTime);
+		System.out.println("ProbeHashMap with key set took " + duration + "ns to filter for test case " + testCase + ".");
+
+		startTime = System.nanoTime();
+		hashmap.filterAllEntrySet(minStars, minReviews, state, city);
+		endTime = System.nanoTime();
+		duration = (endTime - startTime);
+		System.out.println("ProbeHashMap with entry set took " + duration + "ns to filter for test case " + testCase + ".");
+
+
+		hashmap.filterAllEntryIter(minStars, minReviews, state, city);
+		endTime = System.nanoTime();
+		duration = (endTime - startTime);
+		System.out.println("ProbeHashMap with entry Iteration took " + duration + "ns to filter for test case " + testCase + ".");
+
+
+		hashmap.filterAllKeyIter(minStars, minReviews, state, city);
+		endTime = System.nanoTime();
+		duration = (endTime - startTime);
+		System.out.println("ProbeHashMap with key Iteration took " + duration + "ns to filter for test case " + testCase + ".");
 	}
+
 
 	public static void fileSizeCalculator(Object obj){
 		try {
