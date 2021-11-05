@@ -201,7 +201,7 @@ public class Cs201Application {
 		duration = (endTime - startTime);
 		System.out.println("HashMap with key Iteration took " + duration + "ns to filter for test case " + testCase + ".");
 
-		System.out.println("Calculated Size of file: " + actualMemUsed.byteValue());
+		//System.out.println("Calculated Size of file: " + actualMemUsed.byteValue());
 
 
 //-------------------------Filter Test Case 3--------------------------------------------------------------------------
