@@ -11,9 +11,9 @@ public class Hashmap implements Serializable {
     private static List<Business> businessList;
     private static HashMap<String,Business> bizList;
 
-    public Hashmap(){
+    public Hashmap(String filepath){
         ReadToArray fileReader = new ReadToArray();
-        businessList = fileReader.readFile("CS201/src/main/resources/yelpBiz.json");
+        businessList = fileReader.readFile(filepath);
         bizList = new HashMap<>();
         for (Business b: businessList) {
             bizList.put(b.getBusinessId(), b);

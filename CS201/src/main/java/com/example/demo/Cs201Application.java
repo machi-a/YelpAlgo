@@ -56,7 +56,7 @@ public class Cs201Application {
 		System.out.println("The AVLTree took " + Test1duration_MultiTree + "ns to complete storing.");
 
 		startTime = System.nanoTime();
-		// TODO: Li add HashMap creation code here
+		Hashmap hashmap = new Hashmap(filepath);
 		endTime = System.nanoTime();
 		Test1duration_MultiTree = (endTime - startTime);  //divide by 1000000 to get milliseconds.
 		System.out.println("The HashMap took " + Test1duration_MultiTree + "ns to complete storing.");
